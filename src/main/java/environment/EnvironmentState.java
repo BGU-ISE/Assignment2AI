@@ -100,4 +100,20 @@ public class EnvironmentState {
     public void setSimulationTravelGraph(Graph<Vertex, Edge> simulationTravelGraph) {
         this.simulationTravelGraph = simulationTravelGraph;
     }
+
+    public HashMap<Agent, Vertex> getAgentsLocation() {
+        return agentsLocation;
+    }
+
+    public void setAgentsLocation(HashMap<Agent, Vertex> agentsLocation) {
+        this.agentsLocation = agentsLocation;
+    }
+
+    public HashMap<Agent, Integer> getTravelTime() {
+        return travelTime;
+    }
+
+    public void setTravelTime(HashMap<Agent, Integer> travelTime) {
+        this.travelTime = travelTime;
+    }
 }
