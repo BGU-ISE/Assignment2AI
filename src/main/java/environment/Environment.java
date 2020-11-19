@@ -30,6 +30,7 @@ public class Environment {
         System.out.println("==========================");
         WorldLoader loader = new WorldLoader("/Users/igorvinokur/Development/Dev/Study/Assignment1AI/src/main/resources/graph-test.json");
         EnvironmentState.getInstance().setGraph(loader.loadWorld());
+        EnvironmentState.getInstance().setWorldTimeout(loader.getWorldTimout().intValue());
 //        EnvironmentState.getInstance().setGraph(getGraph());
 //        EnvironmentState.getInstance().setGraph(getGraph1());
         while (!shutdown) {

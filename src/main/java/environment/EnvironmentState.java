@@ -14,8 +14,11 @@ public class EnvironmentState {
 
     private int numberOfAgents = 0;
     private List<Agent> agents;
+    private int worldTimeout;
 
     private Graph<Vertex, Edge> graph;
+    private Graph<Vertex, Edge> simulationGraph;
+
     private Vertex init;
 
     private EnvironmentState() {
@@ -59,5 +62,21 @@ public class EnvironmentState {
 
     public void setInit(Vertex init) {
         this.init = init;
+    }
+
+    public int getWorldTimeout() {
+        return worldTimeout;
+    }
+
+    public void setWorldTimeout(int worldTimeout) {
+        this.worldTimeout = worldTimeout;
+    }
+
+    public Graph<Vertex, Edge> getSimulationGraph() {
+        return simulationGraph;
+    }
+
+    public void setSimulationGraph(Graph<Vertex, Edge> simulationGraph) {
+        this.simulationGraph = simulationGraph;
     }
 }
