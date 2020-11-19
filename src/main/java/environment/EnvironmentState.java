@@ -6,6 +6,7 @@ import datatypes.Vertex;
 import org.jgrapht.Graph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EnvironmentState {
@@ -20,10 +21,15 @@ public class EnvironmentState {
     private Graph<Vertex, Edge> simulationGraph;
     private Graph<Vertex, Edge> simulationTravelGraph;
 
+    private HashMap<Agent, Vertex> agentsLocation;
+    private HashMap<Agent, Integer> travelTime;
+
     private Vertex init;
 
     private EnvironmentState() {
         agents = new ArrayList<>();
+        agentsLocation = new HashMap<>();
+        travelTime = new HashMap<>();
     }
 
     public static EnvironmentState getInstance() {
@@ -46,6 +52,9 @@ public class EnvironmentState {
     }
 
     public void setAgents(List<Agent> agents) {
+        for (Agent a : agents) {
+            travelTime.put(a, 0);
+        }
         this.agents = agents;
     }
 
@@ -62,6 +71,9 @@ public class EnvironmentState {
     }
 
     public void setInit(Vertex init) {
+        for (Agent a : agents) {
+            agentsLocation.put(a, init);
+        }
         this.init = init;
     }
 
