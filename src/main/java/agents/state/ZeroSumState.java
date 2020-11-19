@@ -13,7 +13,7 @@ public class ZeroSumState {
     protected Map<Integer, Integer> vertexToPeople;
     protected int iSaved;
     protected int enemySaved;
-    protected int myTimeToReach;
+    protected int howMuchTimeDidIGo;
     protected int enemyTimeToReach;
 
     public ZeroSumState(Vertex currentVertex, Vertex enemyCurrentVertex, Map<Integer, Integer> vertexToPeople, int iSaved, int enemySaved, int myTimeToReach, int enemyTimeToReach) {
@@ -22,7 +22,7 @@ public class ZeroSumState {
         this.vertexToPeople = vertexToPeople;
         this.iSaved = iSaved;
         this.enemySaved = enemySaved;
-        this.myTimeToReach = myTimeToReach;
+        this.howMuchTimeDidIGo = myTimeToReach;
         this.enemyTimeToReach = enemyTimeToReach;
     }
 
@@ -68,11 +68,11 @@ public class ZeroSumState {
     }
 
     public int getMyTimeToReach() {
-        return myTimeToReach;
+        return howMuchTimeDidIGo;
     }
 
     public void setMyTimeToReach(int myTimeToReach) {
-        this.myTimeToReach = myTimeToReach;
+        this.howMuchTimeDidIGo = myTimeToReach;
     }
 
     public int getEnemyTimeToReach() {
@@ -91,7 +91,7 @@ public class ZeroSumState {
                 ", vertexToPeople=" + vertexToPeople +
                 ", iSaved=" + iSaved +
                 ", enemySaved=" + enemySaved +
-                ", myTimeToReach=" + myTimeToReach +
+                ", myTimeToReach=" + howMuchTimeDidIGo +
                 ", enemyTimeToReach=" + enemyTimeToReach +
                 '}';
     }
