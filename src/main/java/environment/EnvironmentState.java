@@ -18,6 +18,7 @@ public class EnvironmentState {
 
     private Graph<Vertex, Edge> graph;
     private Graph<Vertex, Edge> simulationGraph;
+    private Graph<Vertex, Edge> simulationTravelGraph;
 
     private Vertex init;
 
@@ -78,5 +79,13 @@ public class EnvironmentState {
 
     public void setSimulationGraph(Graph<Vertex, Edge> simulationGraph) {
         this.simulationGraph = simulationGraph;
+    }
+
+    public Graph<Vertex, Edge> getSimulationTravelGraph() {
+        return simulationTravelGraph;
+    }
+
+    public void setSimulationTravelGraph(Graph<Vertex, Edge> simulationTravelGraph) {
+        this.simulationTravelGraph = simulationTravelGraph;
     }
 }

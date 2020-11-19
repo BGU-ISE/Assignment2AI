@@ -56,15 +56,18 @@ public class Simulator {
     private void prepareSimulationGraph() {
         Graph<Vertex, Edge> g = EnvironmentState.getInstance().getGraph();
         Graph<Vertex, Edge> internal = new DefaultDirectedWeightedGraph<>(Edge.class);
+        Graph<Vertex, Edge> travel = new DefaultDirectedWeightedGraph<>(Edge.class);
         List<Vertex> verticesInGraph = new LinkedList<>();
         Vertex init = EnvironmentState.getInstance().getInit();
         verticesInGraph.add(init);
         internal.addVertex(init);
+        travel.addVertex(init);
         for (Object v : g.vertexSet()) {
             Vertex vv = (Vertex) v;
             if (vv.getNumberOfPeople() > 0 && !vv.getId().equals(init.getId())) {
                 verticesInGraph.add(vv);
                 internal.addVertex(vv);
+                travel.addVertex(vv);
             }
 
         }
@@ -77,11 +80,14 @@ public class Simulator {
                     Edge e = new Edge();
                     internal.addEdge(v, vv, e);
                     internal.setEdgeWeight(e, paths.getPath(vv).getWeight() / (vv.getNumberOfPeople() + 1)); // For minimal spanning tree
+                    travel.addEdge(v, vv, e);
+                    travel.setEdgeWeight(e, paths.getPath(vv).getWeight());
                     e.setComment("Path weight: " + paths.getPath(vv).getWeight());
                 }
             }
         }
 
         EnvironmentState.getInstance().setSimulationGraph(internal);
+        EnvironmentState.getInstance().setSimulationTravelGraph(travel);
     }
 }
