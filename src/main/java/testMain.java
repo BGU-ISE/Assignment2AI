@@ -1,8 +1,13 @@
+import agents.ZeroSumAgent;
 import datatypes.Edge;
 import datatypes.Vertex;
 import environment.EnvironmentState;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.WeightedMultigraph;
+import simulator.Simulator;
+
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class testMain {
     public static void main(String[] args){
@@ -89,7 +94,33 @@ public class testMain {
 
 //        GreedyAgent agent=new GreedyAgent();
 //        GraphMovementAction action=agent.processNextAction(new Perception(v1,g));
-//        EnvironmentState.getInstance().setGraph(g);
+        EnvironmentState.getInstance().setGraph(g);
+//        WorldLoader loader = new WorldLoader("/Users/igorvinokur/Development/Dev/Study/Assignment1AI/src/main/resources/graph-test.json");
+//        EnvironmentState.getInstance().setGraph(loader.loadWorld());
+//        EnvironmentState.getInstance().setWorldTimeout(loader.getWorldTimout().intValue());
+//        for (Vertex v : EnvironmentState.getInstance().getGraph().vertexSet()) {
+//            if (v.getId() == 1) {
+//                v1 = v;
+//            }
+//            if (v.getId() == 6) {
+//                v2 = v;
+//            }
+//        }
+
+        HashMap<Integer, Integer> peopleAtVertex = new HashMap<>();
+        for (Vertex v : EnvironmentState.getInstance().getGraph().vertexSet()) {
+            if (v.getNumberOfPeople() > 0) {
+                peopleAtVertex.put(v.getId(), v.getNumberOfPeople());
+            }
+        }
+        EnvironmentState.getInstance().setPeopleAtVertex(peopleAtVertex);
+        ZeroSumAgent zeroSumAgent1 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 1");
+        ZeroSumAgent zeroSumAgent2 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 2");
+        zeroSumAgent1.setEnemy(zeroSumAgent2);
+        zeroSumAgent2.setEnemy(zeroSumAgent1);
+        EnvironmentState.getInstance().setAgentInit(zeroSumAgent1, v1);
+        EnvironmentState.getInstance().setAgentInit(zeroSumAgent2, v7);
+        EnvironmentState.getInstance().setAgents(Arrays.asList(zeroSumAgent1, zeroSumAgent2));
 //        RescuePeopleGoal rpg = new RescuePeopleGoal();
 //        GreedyHeuristicAgent a = new GreedyHeuristicAgent(g, v1);
 //        AStarAgent a = new AStarAgent(g, v1);
@@ -98,10 +129,8 @@ public class testMain {
 //        a.setGoal(rpg);
 //        a.processNextAction(null);
 //        EnvironmentState.getInstance().getAgents().add(a);
-//        Simulator s = new Simulator();
-//        s.start();
+        Simulator s = new Simulator();
+        s.start();
 //        System.out.println(a.getInternal().edgeSet());
-        Graph<Vertex, Edge> gg = EnvironmentState.cloneGraph((WeightedMultigraph<Vertex, Edge>) g);
-        System.out.println(gg);
     }
 }

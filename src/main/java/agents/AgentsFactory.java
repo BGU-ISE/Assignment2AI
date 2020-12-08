@@ -27,9 +27,11 @@ public class AgentsFactory {
 
     public static Agent createGreedySearchAgent() {
         int id = getInitPosition();
+//        Vertex init = null;
         for (Vertex v : EnvironmentState.getInstance().getGraph().vertexSet()) {
             if (v.getId() == id) {
                 EnvironmentState.getInstance().setInit(v);
+//                init = v;
                 break;
             }
         }
@@ -56,6 +58,20 @@ public class AgentsFactory {
             }
         }
         return new RealTimeAStarAgent(EnvironmentState.getInstance().getGraph(), EnvironmentState.getInstance().getInit());
+    }
+
+    public static Agent createZeroSumAgent() {
+        int id = getInitPosition();
+        Vertex init = null;
+        for (Vertex v : EnvironmentState.getInstance().getGraph().vertexSet()) {
+            if (v.getId() == id) {
+                init = v;
+                break;
+            }
+        }
+        ZeroSumAgent zeroSumAgent = new ZeroSumAgent(EnvironmentState.getInstance(), "" + id);
+        EnvironmentState.getInstance().setAgentInit(zeroSumAgent, init);
+        return zeroSumAgent;
     }
 
 

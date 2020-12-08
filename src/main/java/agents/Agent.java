@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public abstract class Agent {
-
+    protected String name;
     protected List<Action> seq = new LinkedList<>();
     protected Goal goal;
     protected Problem problemFormulation;
@@ -55,5 +55,13 @@ public abstract class Agent {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

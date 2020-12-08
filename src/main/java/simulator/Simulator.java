@@ -29,13 +29,26 @@ public class Simulator {
                     agentsToRemove.add(a);
                     continue;
                 }
-                Action action = a.processNextAction(null);
-                a.updateState(action);
-                System.out.print("Move to: ");
-                System.out.println(action);
-                if (a.getGoal().isGoalSucceeded()) {
+                if (isGoal()) {
+                    System.out.println("We are done");
                     terminate = true;
-                    agentsToRemove.add(a);
+                }
+                if (EnvironmentState.getInstance().getTravelTime().getOrDefault(a, 0) == 0) {
+                    EnvironmentState.getInstance().getPeopleAtVertex().remove(EnvironmentState.getInstance().getAgentsLocation().get(a).getId());
+                    if (isGoal()) {
+                        System.out.println("We are done");
+                        terminate = true;
+                        break;
+                    }
+                    Action action = a.processNextAction(null);
+                    a.updateState(action);
+                    System.out.print(a + " Moving to: ");
+                    System.out.println(action + " travel time " + EnvironmentState.getInstance().getTravelTime().get(a));
+
+                }
+                else {
+//                    System.out.println(a + " on the way to " + EnvironmentState.getInstance().getAgentsLocation().get(a).getId() + ", arrive in " + EnvironmentState.getInstance().getTravelTime().get(a));
+                    a.updateState(null);
                 }
             }
             time++;
@@ -53,18 +66,23 @@ public class Simulator {
         return terminate;
     }
 
+    private boolean isGoal() {
+        return EnvironmentState.getInstance().getPeopleAtVertex().size() == 0;
+    }
+
     private void prepareSimulationGraph() {
         Graph<Vertex, Edge> g = EnvironmentState.getInstance().getGraph();
         Graph<Vertex, Edge> internal = new DefaultDirectedWeightedGraph<>(Edge.class);
         Graph<Vertex, Edge> travel = new DefaultDirectedWeightedGraph<>(Edge.class);
         List<Vertex> verticesInGraph = new LinkedList<>();
-        Vertex init = EnvironmentState.getInstance().getInit();
-        verticesInGraph.add(init);
-        internal.addVertex(init);
-        travel.addVertex(init);
+        for (Vertex init : EnvironmentState.getInstance().getAgentsLocation().values()) {
+            verticesInGraph.add(init);
+            internal.addVertex(init);
+            travel.addVertex(init);
+        }
         for (Object v : g.vertexSet()) {
             Vertex vv = (Vertex) v;
-            if (vv.getNumberOfPeople() > 0 && !vv.getId().equals(init.getId())) {
+            if (vv.getNumberOfPeople() > 0 && !verticesInGraph.contains(vv)) {
                 verticesInGraph.add(vv);
                 internal.addVertex(vv);
                 travel.addVertex(vv);

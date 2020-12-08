@@ -1,6 +1,5 @@
 package agents;
 
-import agents.state.State;
 import datatypes.Vertex;
 
 public class MinMaxAction extends Action{
@@ -8,10 +7,12 @@ public class MinMaxAction extends Action{
     private Vertex toVertex;
     private boolean terminate=false;
     private int originalNumberOfPeople;
+    private Integer edgeTime;
 
-    public MinMaxAction(Vertex toVertex) {
+    public MinMaxAction(Vertex toVertex, Integer edgeTime) {
         this.toVertex = toVertex;
         this.originalNumberOfPeople = toVertex.getNumberOfPeople();
+        this.edgeTime = edgeTime;
     }
     public MinMaxAction(Vertex toVertex, boolean terminate) {
         this.toVertex = toVertex;
@@ -40,4 +41,16 @@ public class MinMaxAction extends Action{
         this.terminate = terminate;
     }
 
+    public Integer getEdgeTime() {
+        return edgeTime;
+    }
+
+    public void setEdgeTime(Integer edgeTime) {
+        this.edgeTime = edgeTime;
+    }
+
+    @Override
+    public String toString() {
+        return "" + toVertex.getId();
+    }
 }

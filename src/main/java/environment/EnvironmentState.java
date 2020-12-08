@@ -78,10 +78,11 @@ public class EnvironmentState {
     }
 
     public void setInit(Vertex init) {
-        for (Agent a : agents) {
-            agentsLocation.put(a, init);
-        }
         this.init = init;
+    }
+
+    public void setAgentInit(Agent a, Vertex init) {
+        agentsLocation.put(a, init);
     }
 
     public int getWorldTimeout() {
@@ -142,25 +143,51 @@ public class EnvironmentState {
 
     public Graph<Vertex, Edge> getSimulationGraphCopy() {
         WeightedMultigraph<Vertex, Edge> newGrapg = new WeightedMultigraph<>(Edge.class);
-        newGrapg.vertexSet().addAll(simulationGraph.vertexSet());
-        newGrapg.edgeSet().addAll(simulationGraph.edgeSet());
+//        for (Vertex v : simulationGraph.vertexSet()) {
+//            newGrapg.addVertex(v);
+//        }
+        for (Edge e : simulationGraph.edgeSet()) {
+            Vertex v1 = new Vertex(e.getTarget().getId(), e.getTarget().getNumberOfPeople());
+            Vertex v2 = new Vertex(e.getSource().getId(), e.getSource().getNumberOfPeople());
+            newGrapg.addVertex(v1);
+            newGrapg.addVertex(v2);
+            Edge edge = new Edge(e.getId());
+            newGrapg.addEdge(v1, v2, edge);
+        }
         return newGrapg;
     }
 
     public Graph<Vertex, Edge> getSimulationTravelGraphCopy() {
         WeightedMultigraph<Vertex, Edge> newGrapg = new WeightedMultigraph<>(Edge.class);
-        newGrapg.vertexSet().addAll(simulationTravelGraph.vertexSet());
-        newGrapg.edgeSet().addAll(simulationTravelGraph.edgeSet());
+//        for (Vertex v : simulationTravelGraph.vertexSet()) {
+//            newGrapg.addVertex(v);
+//        }
+        for (Edge e : simulationTravelGraph.edgeSet()) {
+            Vertex v1 = new Vertex(e.getTarget().getId(), e.getTarget().getNumberOfPeople());
+            Vertex v2 = new Vertex(e.getSource().getId(), e.getSource().getNumberOfPeople());
+            newGrapg.addVertex(v1);
+            newGrapg.addVertex(v2);
+            Edge edge = new Edge(e.getId());
+            newGrapg.addEdge(v1, v2, edge);
+        }
         return newGrapg;
     }
 
     public static Graph<Vertex, Edge> cloneGraph(Graph<Vertex, Edge> graph) {
         WeightedMultigraph<Vertex, Edge> newGrapg = new WeightedMultigraph<>(Edge.class);
-        for (Vertex v : graph.vertexSet()) {
-            newGrapg.addVertex(v);
-        }
+//        for (Vertex v : graph.vertexSet()) {
+//            newGrapg.addVertex(v);
+//        }
+//        for (Edge e : graph.edgeSet()) {
+//            newGrapg.addEdge(e.getSource(), e.getTarget(), e);
+//        }
         for (Edge e : graph.edgeSet()) {
-            newGrapg.addEdge(e.getSource(), e.getTarget(), e);
+            Vertex v1 = new Vertex(e.getTarget().getId(), e.getTarget().getNumberOfPeople());
+            Vertex v2 = new Vertex(e.getSource().getId(), e.getSource().getNumberOfPeople());
+            newGrapg.addVertex(v1);
+            newGrapg.addVertex(v2);
+            Edge edge = new Edge(e.getId());
+            newGrapg.addEdge(v1, v2, edge);
         }
         return newGrapg;
     }
