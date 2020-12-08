@@ -1,11 +1,8 @@
-import agents.RealTimeAStarAgent;
-import agents.goals.RescuePeopleGoal;
 import datatypes.Edge;
 import datatypes.Vertex;
 import environment.EnvironmentState;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.WeightedMultigraph;
-import simulator.Simulator;
 
 public class testMain {
     public static void main(String[] args){
@@ -92,17 +89,19 @@ public class testMain {
 
 //        GreedyAgent agent=new GreedyAgent();
 //        GraphMovementAction action=agent.processNextAction(new Perception(v1,g));
-        EnvironmentState.getInstance().setGraph(g);
-        RescuePeopleGoal rpg = new RescuePeopleGoal();
+//        EnvironmentState.getInstance().setGraph(g);
+//        RescuePeopleGoal rpg = new RescuePeopleGoal();
 //        GreedyHeuristicAgent a = new GreedyHeuristicAgent(g, v1);
 //        AStarAgent a = new AStarAgent(g, v1);
-        RealTimeAStarAgent a = new RealTimeAStarAgent(g, v1);
-        a.setGoal(rpg);
+//        RealTimeAStarAgent a = new RealTimeAStarAgent(g, v1);
+//        a.setGoal(rpg);
 //        a.setGoal(rpg);
 //        a.processNextAction(null);
-        EnvironmentState.getInstance().getAgents().add(a);
-        Simulator s = new Simulator();
-        s.start();
+//        EnvironmentState.getInstance().getAgents().add(a);
+//        Simulator s = new Simulator();
+//        s.start();
 //        System.out.println(a.getInternal().edgeSet());
+        Graph<Vertex, Edge> gg = EnvironmentState.cloneGraph((WeightedMultigraph<Vertex, Edge>) g);
+        System.out.println(gg);
     }
 }

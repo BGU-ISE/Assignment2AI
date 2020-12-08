@@ -153,4 +153,15 @@ public class EnvironmentState {
         newGrapg.edgeSet().addAll(simulationTravelGraph.edgeSet());
         return newGrapg;
     }
+
+    public static Graph<Vertex, Edge> cloneGraph(Graph<Vertex, Edge> graph) {
+        WeightedMultigraph<Vertex, Edge> newGrapg = new WeightedMultigraph<>(Edge.class);
+        for (Vertex v : graph.vertexSet()) {
+            newGrapg.addVertex(v);
+        }
+        for (Edge e : graph.edgeSet()) {
+            newGrapg.addEdge(e.getSource(), e.getTarget(), e);
+        }
+        return newGrapg;
+    }
 }
