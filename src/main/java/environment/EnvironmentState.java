@@ -4,6 +4,7 @@ import agents.Agent;
 import datatypes.Edge;
 import datatypes.Vertex;
 import org.jgrapht.Graph;
+import org.jgrapht.graph.WeightedMultigraph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -137,5 +138,19 @@ public class EnvironmentState {
 
     public void setAgentScore(HashMap<Agent, Integer> agentScore) {
         this.agentScore = agentScore;
+    }
+
+    public Graph<Vertex, Edge> getSimulationGraphCopy() {
+        WeightedMultigraph<Vertex, Edge> newGrapg = new WeightedMultigraph<>(Edge.class);
+        newGrapg.vertexSet().addAll(simulationGraph.vertexSet());
+        newGrapg.edgeSet().addAll(simulationGraph.edgeSet());
+        return newGrapg;
+    }
+
+    public Graph<Vertex, Edge> getSimulationTravelGraphCopy() {
+        WeightedMultigraph<Vertex, Edge> newGrapg = new WeightedMultigraph<>(Edge.class);
+        newGrapg.vertexSet().addAll(simulationTravelGraph.vertexSet());
+        newGrapg.edgeSet().addAll(simulationTravelGraph.edgeSet());
+        return newGrapg;
     }
 }
