@@ -23,6 +23,9 @@ public class EnvironmentState {
 
     private HashMap<Agent, Vertex> agentsLocation;
     private HashMap<Agent, Integer> travelTime;
+    private HashMap<Agent, Integer> agentScore; // people saved by agent
+
+    private HashMap<Integer, Integer> peopleAtVertex;
 
     private Vertex init;
 
@@ -30,6 +33,8 @@ public class EnvironmentState {
         agents = new ArrayList<>();
         agentsLocation = new HashMap<>();
         travelTime = new HashMap<>();
+        agentScore = new HashMap<>();
+        peopleAtVertex = new HashMap<>();
     }
 
     public static EnvironmentState getInstance() {
@@ -54,6 +59,7 @@ public class EnvironmentState {
     public void setAgents(List<Agent> agents) {
         for (Agent a : agents) {
             travelTime.put(a, 0);
+            agentScore.put(a, 0);
         }
         this.agents = agents;
     }
@@ -115,5 +121,21 @@ public class EnvironmentState {
 
     public void setTravelTime(HashMap<Agent, Integer> travelTime) {
         this.travelTime = travelTime;
+    }
+
+    public HashMap<Integer, Integer> getPeopleAtVertex() {
+        return peopleAtVertex;
+    }
+
+    public void setPeopleAtVertex(HashMap<Integer, Integer> peopleAtVertex) {
+        this.peopleAtVertex = peopleAtVertex;
+    }
+
+    public HashMap<Agent, Integer> getAgentScore() {
+        return agentScore;
+    }
+
+    public void setAgentScore(HashMap<Agent, Integer> agentScore) {
+        this.agentScore = agentScore;
     }
 }

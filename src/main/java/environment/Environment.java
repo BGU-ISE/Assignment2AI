@@ -9,6 +9,7 @@ import org.jgrapht.graph.WeightedMultigraph;
 import parser.WorldLoader;
 import simulator.Simulator;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Environment {
@@ -23,7 +24,6 @@ public class Environment {
         simulator = new Simulator();
     }
 
-
     public void start() {
         System.out.println("==========================");
         System.out.println("Welcome to the world of AI");
@@ -31,6 +31,13 @@ public class Environment {
         WorldLoader loader = new WorldLoader("/Users/igorvinokur/Development/Dev/Study/Assignment1AI/src/main/resources/graph-test.json");
         EnvironmentState.getInstance().setGraph(loader.loadWorld());
         EnvironmentState.getInstance().setWorldTimeout(loader.getWorldTimout().intValue());
+        HashMap<Integer, Integer> peopleAtVertex = new HashMap<>();
+        for (Vertex v : EnvironmentState.getInstance().getGraph().vertexSet()) {
+            if (v.getNumberOfPeople() > 0) {
+                peopleAtVertex.put(v.getId(), v.getNumberOfPeople());
+            }
+        }
+        EnvironmentState.getInstance().setPeopleAtVertex(peopleAtVertex);
 //        EnvironmentState.getInstance().setGraph(getGraph());
 //        EnvironmentState.getInstance().setGraph(getGraph1());
         while (!shutdown) {
