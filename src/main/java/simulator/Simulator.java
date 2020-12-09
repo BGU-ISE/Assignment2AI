@@ -10,7 +10,6 @@ import org.jgrapht.alg.interfaces.ShortestPathAlgorithm;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultDirectedWeightedGraph;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,18 +22,14 @@ public class Simulator {
         int time = 0;
         prepareSimulationGraph();
         do {
-            List<Agent> agentsToRemove = new ArrayList<>();
             for (Agent a : EnvironmentState.getInstance().getAgents()) {
-                if (a.isFailed()) {
-                    agentsToRemove.add(a);
-                    continue;
-                }
                 if (isGoal()) {
                     System.out.println("We are done");
                     terminate = true;
                 }
                 if (EnvironmentState.getInstance().getTravelTime().getOrDefault(a, 0) == 0) {
-                    EnvironmentState.getInstance().getPeopleAtVertex().remove(EnvironmentState.getInstance().getAgentsLocation().get(a).getId());
+                    Integer score = EnvironmentState.getInstance().getPeopleAtVertex().remove(EnvironmentState.getInstance().getAgentsLocation().get(a).getId());
+                    EnvironmentState.getInstance().getAgentScore().put(a, EnvironmentState.getInstance().getAgentScore().get(a) + (score == null? 0: score));
                     if (isGoal()) {
                         System.out.println("We are done");
                         terminate = true;
@@ -52,13 +47,15 @@ public class Simulator {
                 }
             }
             time++;
-            EnvironmentState.getInstance().getAgents().removeAll(agentsToRemove);
-            agentsToRemove.clear();
+
             if (time == EnvironmentState.getInstance().getWorldTimeout()) {
                 System.out.println("Time is up: " + time);
                 terminate = true;
             }
         }while (!needTermination());
+        for (Agent a : EnvironmentState.getInstance().getAgents()) {
+            System.out.println("Score " + a + " " + EnvironmentState.getInstance().getAgentScore().get(a));
+        }
         System.out.println("Done");
     }
 

@@ -10,10 +10,10 @@ import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ZeroSumAgent extends Agent {
 
-    private static final int MAX_EXP = 10;
     private EnvironmentState state;
     private Graph<Vertex, Edge> internal;
     private List<Vertex> pathStates;
@@ -50,7 +50,9 @@ public class ZeroSumAgent extends Agent {
                 return AlphaBetaRec(newstate, enemySimulationGraph, simulationGraph, heuristic.evaluate(curr), beta, !isMaxPlayer);
             } else {
                 List<ZeroSumState> statelst = new LinkedList<>();
-                HashMap<Integer, Integer> newvertexToPeople = new HashMap<>(curr.getVertexToPeople());
+                HashMap<Integer, Integer> newvertexToPeople = (HashMap<Integer, Integer>)curr.getVertexToPeople().entrySet()
+                        .stream()
+                        .collect(Collectors.toMap(integerIntegerEntry -> integerIntegerEntry.getKey(), integerIntegerEntry -> integerIntegerEntry.getValue()));
                 newvertexToPeople.put(curr.getCurrentVertex().getId(), 0);
                 Graph<Vertex, Edge> newgraph = EnvironmentState.cloneGraph(simulationGraph);
                 newgraph.removeVertex(curr.getCurrentVertex());
@@ -58,13 +60,21 @@ public class ZeroSumAgent extends Agent {
                 for (Vertex v :
                         simulationGraph.vertexSet()) {
                     if (!v.equals(curr.getCurrentVertex())) {
+                        boolean shortest = false;
+                        if (simulationGraph.getEdgeWeight(simulationGraph.getEdge(curr.getCurrentVertex(), v)) == 1) {
+                            shortest = true;
+                        }
 
-                        ZeroSumState newstate = new ZeroSumState(v, curr.getEnemyCurrentVertex(), newvertexToPeople,
-                                curr.getiSaved(), curr.getEnemySaved(),
+                        ZeroSumState newstate = new ZeroSumState(v,
+                                curr.getEnemyCurrentVertex(),
+                                newvertexToPeople,
+                                curr.getiSaved() + (shortest ? newvertexToPeople.get(v.getId()) : 0),
+                                curr.getEnemySaved(),
                                 (int) simulationGraph.getEdgeWeight(simulationGraph.getEdge(curr.getCurrentVertex(), v)) - 1,
                                 curr.getEnemyTimeToReach());
                         sonToFather.put(newstate, curr);
-                        ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, heuristic.evaluate(curr), beta, !isMaxPlayer);
+                        int newAlpha = heuristic.evaluate(curr);
+                        ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, newAlpha, beta, !isMaxPlayer);
                         if (toAdd != null) {
                             statelst.add(toAdd);
                         }
@@ -84,7 +94,6 @@ public class ZeroSumAgent extends Agent {
                     }
                     return 1;
                 });
-
                 return statelst.get(statelst.size() - 1);
 
             }
@@ -106,7 +115,9 @@ public class ZeroSumAgent extends Agent {
                 return AlphaBetaRec(newstate, enemySimulationGraph, simulationGraph, alpha, heuristic.evaluate(curr), !isMaxPlayer);
             } else {
                 List<ZeroSumState> statelst = new LinkedList<>();
-                HashMap<Integer, Integer> newvertexToPeople = new HashMap<>(curr.getVertexToPeople());
+                HashMap<Integer, Integer> newvertexToPeople = (HashMap<Integer, Integer>)curr.getVertexToPeople().entrySet()
+                        .stream()
+                        .collect(Collectors.toMap(integerIntegerEntry -> integerIntegerEntry.getKey(), integerIntegerEntry -> integerIntegerEntry.getValue()));
                 newvertexToPeople.put(curr.getEnemyCurrentVertex().getId(), 0);
                 Graph<Vertex, Edge> newgraph = EnvironmentState.cloneGraph(simulationGraph);
                 newgraph.removeVertex(curr.getEnemyCurrentVertex());
@@ -114,10 +125,16 @@ public class ZeroSumAgent extends Agent {
                 for (Vertex v :
                         simulationGraph.vertexSet()) {
                     if (!v.equals(curr.getEnemyCurrentVertex())) {
-
-                        ZeroSumState newstate = new ZeroSumState(curr.getCurrentVertex(), v,
-                                newvertexToPeople, curr.getiSaved(),
-                                curr.getEnemySaved(), curr.getMyTimeToReach(),
+                        boolean shortest = false;
+                        if (simulationGraph.getEdgeWeight(simulationGraph.getEdge(curr.getEnemyCurrentVertex(), v)) == 1) {
+                            shortest = true;
+                        }
+                        ZeroSumState newstate = new ZeroSumState(curr.getCurrentVertex(),
+                                v,
+                                newvertexToPeople,
+                                curr.getiSaved(),
+                                curr.getEnemySaved() + (shortest ? newvertexToPeople.get(v.getId()) : 0),
+                                curr.getMyTimeToReach(),
                                 (int) simulationGraph.getEdgeWeight(simulationGraph.getEdge(curr.getEnemyCurrentVertex(), v)) - 1);
                         sonToFather.put(newstate, curr);
                         ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, alpha, heuristic.evaluate(curr), !isMaxPlayer);

@@ -153,6 +153,7 @@ public class EnvironmentState {
             newGrapg.addVertex(v2);
             Edge edge = new Edge(e.getId());
             newGrapg.addEdge(v1, v2, edge);
+            newGrapg.setEdgeWeight(edge, e.getWeight());
         }
         return newGrapg;
     }
@@ -169,6 +170,7 @@ public class EnvironmentState {
             newGrapg.addVertex(v2);
             Edge edge = new Edge(e.getId());
             newGrapg.addEdge(v1, v2, edge);
+            newGrapg.setEdgeWeight(edge, e.getWeight());
         }
         return newGrapg;
     }
@@ -188,6 +190,7 @@ public class EnvironmentState {
             newGrapg.addVertex(v2);
             Edge edge = new Edge(e.getId());
             newGrapg.addEdge(v1, v2, edge);
+            newGrapg.setEdgeWeight(edge, e.getWeight());
         }
         return newGrapg;
     }
