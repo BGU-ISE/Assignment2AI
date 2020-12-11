@@ -16,7 +16,10 @@ public class ZeroSumState {
     protected int howMuchTimeDidIGo;
     protected int enemyTimeToReach;
 
-    public ZeroSumState(Vertex currentVertex, Vertex enemyCurrentVertex, Map<Integer, Integer> vertexToPeople, int iSaved, int enemySaved, int myTimeToReach, int enemyTimeToReach) {
+
+
+    protected Integer score;
+    public ZeroSumState(Vertex currentVertex, Vertex enemyCurrentVertex, Map<Integer, Integer> vertexToPeople, int iSaved, int enemySaved, int myTimeToReach, int enemyTimeToReach, Integer s) {
         this.currentVertex = currentVertex;
         this.enemyCurrentVertex = enemyCurrentVertex;
         this.vertexToPeople = vertexToPeople;
@@ -24,6 +27,7 @@ public class ZeroSumState {
         this.enemySaved = enemySaved;
         this.howMuchTimeDidIGo = myTimeToReach;
         this.enemyTimeToReach = enemyTimeToReach;
+        this.score=s;
     }
 
 
@@ -82,7 +86,13 @@ public class ZeroSumState {
     public void setEnemyTimeToReach(int enemyTimeToReach) {
         this.enemyTimeToReach = enemyTimeToReach;
     }
+    public Integer getScore() {
+        return score;
+    }
 
+    public void setScore(Integer score) {
+        this.score = score;
+    }
     @Override
     public String toString() {
         return "ZeroSumState{" +
@@ -94,5 +104,21 @@ public class ZeroSumState {
                 ", myTimeToReach=" + howMuchTimeDidIGo +
                 ", enemyTimeToReach=" + enemyTimeToReach +
                 '}';
+    }
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ZeroSumState that = (ZeroSumState) o;
+        return iSaved == that.iSaved &&
+                enemySaved == that.enemySaved &&
+                howMuchTimeDidIGo == that.howMuchTimeDidIGo &&
+                enemyTimeToReach == that.enemyTimeToReach &&
+                currentVertex.equals(that.currentVertex) &&
+                enemyCurrentVertex.equals(that.enemyCurrentVertex) &&
+                Objects.equals(score, that.score);
     }
 }
