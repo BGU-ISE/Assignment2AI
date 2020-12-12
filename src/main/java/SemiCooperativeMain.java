@@ -10,8 +10,8 @@ import simulator.Simulator;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class testMain {
-    public static void main(String[] args){
+public class SemiCooperativeMain {
+    public static void main(String[] args) {
         Graph<Vertex, Edge> g=new WeightedMultigraph<>(Edge.class);
         Vertex v1=new Vertex(1,0);
         Vertex v2=new Vertex(2,4);
@@ -89,22 +89,8 @@ public class testMain {
         g.addEdge(v9,v12,e14);
         g.setEdgeWeight(e14,7);
 
-//        GreedyAgent agent=new GreedyAgent();
-//        GraphMovementAction action=agent.processNextAction(new Perception(v1,g));
         EnvironmentState.getInstance().setGraph(g);
         EnvironmentState.getInstance().setWorldTimeout(24);
-//        WorldLoader loader = new WorldLoader("/Users/igorvinokur/Development/Dev/Study/Assignment1AI/src/main/resources/graph-test.json");
-//        EnvironmentState.getInstance().setGraph(loader.loadWorld());
-//        EnvironmentState.getInstance().setWorldTimeout(loader.getWorldTimout().intValue());
-//        for (Vertex v : EnvironmentState.getInstance().getGraph().vertexSet()) {
-//            if (v.getId() == 1) {
-//                v1 = v;
-//            }
-//            if (v.getId() == 6) {
-//                v2 = v;
-//            }
-//        }
-//        ZSHeuristics heuristics = new ZeroSumNonCooperativeHeuristic();
 
         HashMap<Integer, Integer> peopleAtVertex = new HashMap<>();
         for (Vertex v : EnvironmentState.getInstance().getGraph().vertexSet()) {
@@ -112,11 +98,8 @@ public class testMain {
                 peopleAtVertex.put(v.getId(), v.getNumberOfPeople());
             }
         }
-        SemicooperativeHeuristic heuristics =new SemicooperativeHeuristic();
-//        ZSHeuristics heuristics=new ZeroSumCooperativeHeuristic();
         EnvironmentState.getInstance().setPeopleAtVertex(peopleAtVertex);
-//        ZeroSumCooperativeAgent zeroSumAgent1 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
-//        ZeroSumCooperativeAgent zeroSumAgent2 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
+        SemicooperativeHeuristic heuristics =new SemicooperativeHeuristic();
         NoncooperativeAgent zeroSumAgent1 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
         NoncooperativeAgent zeroSumAgent2 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
         zeroSumAgent1.setEnemy(zeroSumAgent2);
@@ -124,16 +107,7 @@ public class testMain {
         EnvironmentState.getInstance().setAgentInit(zeroSumAgent1, v7);
         EnvironmentState.getInstance().setAgentInit(zeroSumAgent2, v1);
         EnvironmentState.getInstance().setAgents(Arrays.asList(zeroSumAgent1, zeroSumAgent2));
-//        RescuePeopleGoal rpg = new RescuePeopleGoal();
-//        GreedyHeuristicAgent a = new GreedyHeuristicAgent(g, v1);
-//        AStarAgent a = new AStarAgent(g, v1);
-//        RealTimeAStarAgent a = new RealTimeAStarAgent(g, v1);
-//        a.setGoal(rpg);
-//        a.setGoal(rpg);
-//        a.processNextAction(null);
-//        EnvironmentState.getInstance().getAgents().add(a);
         Simulator s = new Simulator();
         s.start();
-//        System.out.println(a.getInternal().edgeSet());
     }
 }
