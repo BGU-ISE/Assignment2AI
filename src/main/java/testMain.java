@@ -59,8 +59,6 @@ public class testMain {
         g.addEdge(v1,v2,e1);
         g.setEdgeWeight(e1,8);
 
-        g.addEdge(v1,v6,e2);
-        g.setEdgeWeight(e2,20);
 
         g.addEdge(v2,v3,e3);
         g.setEdgeWeight(e3,5);
@@ -119,13 +117,13 @@ public class testMain {
                 peopleAtVertex.put(v.getId(), v.getNumberOfPeople());
             }
         }
-//        SemicooperativeHeuristic heuristics =new SemicooperativeHeuristic();
-        ZSHeuristics heuristics=new ZeroSumNonCooperativeHeuristic();
+        SemicooperativeHeuristic heuristics =new SemicooperativeHeuristic();
+//        ZSHeuristics heuristics=new ZeroSumCooperativeHeuristic();
         EnvironmentState.getInstance().setPeopleAtVertex(peopleAtVertex);
-        ZeroSumAgent zeroSumAgent1 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
-        ZeroSumAgent zeroSumAgent2 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
-//        NoncooperativeAgent zeroSumAgent1 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
-//        NoncooperativeAgent zeroSumAgent2 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
+//        ZeroSumCooperativeAgent zeroSumAgent1 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
+//        ZeroSumCooperativeAgent zeroSumAgent2 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
+        NoncooperativeAgent zeroSumAgent1 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
+        NoncooperativeAgent zeroSumAgent2 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
         zeroSumAgent1.setEnemy(zeroSumAgent2);
         zeroSumAgent2.setEnemy(zeroSumAgent1);
         EnvironmentState.getInstance().setAgentInit(zeroSumAgent1, v7);
