@@ -1,4 +1,4 @@
-import agents.ZeroSumAgent;
+import agents.ZeroSumCooperativeAgent;
 import datatypes.Edge;
 import datatypes.Vertex;
 import environment.EnvironmentState;
@@ -118,12 +118,14 @@ public class testMain {
             }
         }
         EnvironmentState.getInstance().setPeopleAtVertex(peopleAtVertex);
-        ZeroSumAgent zeroSumAgent1 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
-        ZeroSumAgent zeroSumAgent2 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
+//        ZeroSumAgent zeroSumAgent1 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
+//        ZeroSumAgent zeroSumAgent2 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
+        ZeroSumCooperativeAgent zeroSumAgent1 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
+        ZeroSumCooperativeAgent zeroSumAgent2 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
         zeroSumAgent1.setEnemy(zeroSumAgent2);
         zeroSumAgent2.setEnemy(zeroSumAgent1);
-        EnvironmentState.getInstance().setAgentInit(zeroSumAgent1, v1);
-        EnvironmentState.getInstance().setAgentInit(zeroSumAgent2, v7);
+        EnvironmentState.getInstance().setAgentInit(zeroSumAgent1, v7);
+        EnvironmentState.getInstance().setAgentInit(zeroSumAgent2, v1);
         EnvironmentState.getInstance().setAgents(Arrays.asList(zeroSumAgent1, zeroSumAgent2));
 //        RescuePeopleGoal rpg = new RescuePeopleGoal();
 //        GreedyHeuristicAgent a = new GreedyHeuristicAgent(g, v1);

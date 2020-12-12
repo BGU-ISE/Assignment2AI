@@ -22,6 +22,10 @@ public class Simulator {
         int time = 0;
         prepareSimulationGraph();
         do {
+            if (time == EnvironmentState.getInstance().getWorldTimeout()) {
+                System.out.println("Time is up: " + time);
+                terminate = true;
+            }
             for (Agent a : EnvironmentState.getInstance().getAgents()) {
                 if (isGoal()) {
                     System.out.println("We are done");
@@ -38,7 +42,7 @@ public class Simulator {
                     Action action = a.processNextAction(null);
                     a.updateState(action);
                     System.out.print(a + " Moving to: ");
-                    System.out.println(action + " travel time " + EnvironmentState.getInstance().getTravelTime().get(a));
+                    System.out.println(action + " travel time " + (EnvironmentState.getInstance().getTravelTime().get(a) + 1));
 
                 }
                 else {
@@ -48,10 +52,6 @@ public class Simulator {
             }
             time++;
 
-            if (time == EnvironmentState.getInstance().getWorldTimeout()) {
-                System.out.println("Time is up: " + time);
-                terminate = true;
-            }
         }while (!needTermination());
         for (Agent a : EnvironmentState.getInstance().getAgents()) {
             System.out.println("Score " + a + " " + EnvironmentState.getInstance().getAgentScore().get(a));

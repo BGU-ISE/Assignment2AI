@@ -12,7 +12,7 @@ import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ZeroSumAgent extends Agent {
+public class ZeroSumCooperativeAgent extends Agent {
 
     private EnvironmentState state;
     private Graph<Vertex, Edge> internal;
@@ -22,7 +22,7 @@ public class ZeroSumAgent extends Agent {
     private Agent enemy;
     private HashMap<ZeroSumState, ZeroSumState> sonToFather;
 
-    public ZeroSumAgent(EnvironmentState state, String name, ZSHeuristics heuristics) {
+    public ZeroSumCooperativeAgent(EnvironmentState state, String name, ZSHeuristics heuristics) {
         this.state = state;
         this.name = name;
 //        enemy=state.getAgents().get(0).equals(this) ? state.getAgents().get(1) :  state.getAgents().get(0);
@@ -88,17 +88,15 @@ public class ZeroSumAgent extends Agent {
                                 curr.getEnemyTimeToReach(), null);
                         sonToFather.put(newstate, curr);
 
-//                        System.out.println(" player at: " + curr.getCurrentVertex().getId() + " to: " + v.getId());
+//                            System.out.println(" player at: " + curr.getCurrentVertex().getId() + " to: " + v.getId());
                         ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, alpha, beta, !isMaxPlayer, time);
-//                        System.out.println("player " + toAdd.getScore() + " at: " + curr.getCurrentVertex().getId() + " to: " + toAdd.getCurrentVertex().getId());
+                        if (curr.getCurrentVertex().getId() == 7 && v.getId() == 6 && name.equals("Player 1"))
+                            System.out.println("player " + toAdd.getScore() + " at: " + curr.getCurrentVertex().getId() + " to: " + toAdd.getCurrentVertex().getId() + " " +
+                                    "my saved: " + toAdd.getiSaved() + " enemy saved " + toAdd.getEnemySaved());
                         if (Math.max(value, toAdd.getScore()) != value) {
                             alpha = Math.max(toAdd.getScore(), alpha);
                             value = toAdd.getScore();
                             chosen = toAdd;
-                        }
-                        if (alpha >= beta) {
-//                            System.out.println("a: "+alpha + ", b: " + beta + ", player at: " + curr.getCurrentVertex().getId() + " choose: " + toAdd.getCurrentVertex().getId() + " score: " + toAdd.getScore());
-                            return toAdd;
                         }
                     }
 
@@ -112,7 +110,7 @@ public class ZeroSumAgent extends Agent {
 
 
         } else {
-            Integer value = Integer.MAX_VALUE;
+            Integer value = Integer.MIN_VALUE;
             if (curr.getEnemyTimeToReach() > 0) {
                 ZeroSumState newstate;
                 curr.getVertexToPeople().putIfAbsent(curr.getEnemyCurrentVertex().getId(), 0);
@@ -159,14 +157,10 @@ public class ZeroSumAgent extends Agent {
 //                        System.out.println(" enemy at: " + curr.getEnemyCurrentVertex().getId() + " to: " + v.getId());
                         ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, alpha, beta, !isMaxPlayer, time++);
 //                        System.out.println("enemy: " + toAdd.getScore() + " at: " + curr.getEnemyCurrentVertex().getId() + " to: " + toAdd.getEnemyCurrentVertex().getId());
-                        if (Math.min(value, toAdd.getScore()) != value) {
+                        if (Math.max(value, toAdd.getScore()) != value) {
                             chosen = toAdd;
-                            beta = Math.min(toAdd.getScore(), beta);
+                            beta = Math.max(toAdd.getScore(), beta);
                             value = toAdd.getScore();
-                        }
-                        if (alpha >= beta) {
-//                            System.out.println("a: "+alpha + ", b: " + beta + ", enemy at: " + curr.getEnemyCurrentVertex().getId() + " choose: " + toAdd.getEnemyCurrentVertex().getId() + " score: " + toAdd.getScore());
-                            return toAdd;
                         }
                     }
 
