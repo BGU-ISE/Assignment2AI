@@ -35,7 +35,6 @@ public class ZeroSumCooperativeAgent extends Agent {
         int sum = 0;
 
         if (EnvironmentState.getInstance().getWorldTimeout() == time) {
-            System.out.println("AlphaBeta times up");
             curr.setScore(heuristic.evaluate(curr));
             return curr;
         }
@@ -46,21 +45,27 @@ public class ZeroSumCooperativeAgent extends Agent {
                 ZeroSumState newstate;
                 curr.getVertexToPeople().putIfAbsent(curr.getCurrentVertex().getId(), 0);
                 if (curr.getMyTimeToReach() == 1) {
-                    newstate = new ZeroSumState(curr.getCurrentVertex(), curr.getEnemyCurrentVertex(), curr.getVertexToPeople(),
+                    HashMap<Integer, Integer> newvertexToPeople = (HashMap<Integer, Integer>) curr.getVertexToPeople().entrySet()
+                            .stream()
+                            .collect(Collectors.toMap(integerIntegerEntry -> integerIntegerEntry.getKey(), integerIntegerEntry -> integerIntegerEntry.getValue()));
+                    newvertexToPeople.put(curr.getCurrentVertex().getId(), 0);
+                    newstate = new ZeroSumState(curr.getCurrentVertex(), curr.getEnemyCurrentVertex(), newvertexToPeople,
                             curr.getiSaved() + curr.getVertexToPeople().get(curr.getCurrentVertex().getId()), curr.getEnemySaved(), curr.getMyTimeToReach() - 1, curr.getEnemyTimeToReach(), null);
                 } else {
                     newstate = new ZeroSumState(curr.getCurrentVertex(), curr.getEnemyCurrentVertex(), curr.getVertexToPeople(),
                             curr.getiSaved(), curr.getEnemySaved(), curr.getMyTimeToReach() - 1, curr.getEnemyTimeToReach(), null);
                 }
                 sonToFather.put(newstate, curr);
-                return AlphaBetaRec(newstate, enemySimulationGraph, simulationGraph, alpha, beta, !isMaxPlayer, time);
+                return AlphaBetaRec(newstate,  simulationGraph,enemySimulationGraph, alpha, beta, !isMaxPlayer, time);
             } else {
                 HashMap<Integer, Integer> newvertexToPeople = (HashMap<Integer, Integer>) curr.getVertexToPeople().entrySet()
                         .stream()
                         .collect(Collectors.toMap(integerIntegerEntry -> integerIntegerEntry.getKey(), integerIntegerEntry -> integerIntegerEntry.getValue()));
                 newvertexToPeople.put(curr.getCurrentVertex().getId(), 0);
                 Graph<Vertex, Edge> newgraph = EnvironmentState.cloneGraph(simulationGraph);
-                newgraph.removeVertex(curr.getCurrentVertex());
+                if(!curr.getCurrentVertex().equals(curr.getEnemyCurrentVertex())) {
+                    newgraph.removeVertex(curr.getCurrentVertex());
+                }
                 for (Integer i : newvertexToPeople.values()) {
                     sum += i;
                 }
@@ -89,8 +94,8 @@ public class ZeroSumCooperativeAgent extends Agent {
                         sonToFather.put(newstate, curr);
 
 //                            System.out.println(" player at: " + curr.getCurrentVertex().getId() + " to: " + v.getId());
-                        ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, alpha, beta, !isMaxPlayer, time);
-                        if (curr.getCurrentVertex().getId() == 7 && v.getId() == 6 && name.equals("Player 1"))
+                        ZeroSumState toAdd = AlphaBetaRec(newstate,  newgraph,enemySimulationGraph, alpha, beta, !isMaxPlayer, time);
+                        if (curr.getCurrentVertex().getId() == 7 && name.equals("Player 1"))
                             System.out.println("player " + toAdd.getScore() + " at: " + curr.getCurrentVertex().getId() + " to: " + toAdd.getCurrentVertex().getId() + " " +
                                     "my saved: " + toAdd.getiSaved() + " enemy saved " + toAdd.getEnemySaved());
                         if (Math.max(value, toAdd.getScore()) != value) {
@@ -115,21 +120,27 @@ public class ZeroSumCooperativeAgent extends Agent {
                 ZeroSumState newstate;
                 curr.getVertexToPeople().putIfAbsent(curr.getEnemyCurrentVertex().getId(), 0);
                 if (curr.getEnemyTimeToReach() == 1) {
-                    newstate = new ZeroSumState(curr.getCurrentVertex(), curr.getEnemyCurrentVertex(), curr.getVertexToPeople(),
+                    HashMap<Integer, Integer> newvertexToPeople = (HashMap<Integer, Integer>) curr.getVertexToPeople().entrySet()
+                            .stream()
+                            .collect(Collectors.toMap(integerIntegerEntry -> integerIntegerEntry.getKey(), integerIntegerEntry -> integerIntegerEntry.getValue()));
+                    newvertexToPeople.put(curr.getEnemyCurrentVertex().getId(), 0);
+                    newstate = new ZeroSumState(curr.getCurrentVertex(), curr.getEnemyCurrentVertex(), newvertexToPeople,
                             curr.getiSaved(), curr.getEnemySaved() + curr.getVertexToPeople().get(curr.getEnemyCurrentVertex().getId()), curr.getMyTimeToReach(), curr.getEnemyTimeToReach() - 1, null);
                 } else {
                     newstate = new ZeroSumState(curr.getCurrentVertex(), curr.getEnemyCurrentVertex(), curr.getVertexToPeople(),
                             curr.getiSaved(), curr.getEnemySaved(), curr.getMyTimeToReach(), curr.getEnemyTimeToReach() - 1, null);
                 }
                 sonToFather.put(newstate, curr);
-                return AlphaBetaRec(newstate, enemySimulationGraph, simulationGraph, alpha, beta, !isMaxPlayer, time++);
+                return AlphaBetaRec(newstate,  simulationGraph,enemySimulationGraph, alpha, beta, !isMaxPlayer, time+1);
             } else {
                 HashMap<Integer, Integer> newvertexToPeople = (HashMap<Integer, Integer>) curr.getVertexToPeople().entrySet()
                         .stream()
                         .collect(Collectors.toMap(integerIntegerEntry -> integerIntegerEntry.getKey(), integerIntegerEntry -> integerIntegerEntry.getValue()));
                 newvertexToPeople.put(curr.getEnemyCurrentVertex().getId(), 0);
                 Graph<Vertex, Edge> newgraph = EnvironmentState.cloneGraph(simulationGraph);
-                newgraph.removeVertex(curr.getEnemyCurrentVertex());
+                if(!curr.getEnemyCurrentVertex().equals(curr.getCurrentVertex())) {
+                    newgraph.removeVertex(curr.getEnemyCurrentVertex());
+                }
                 for (Integer i : newvertexToPeople.values()) {
                     sum += i;
                 }
@@ -155,7 +166,7 @@ public class ZeroSumCooperativeAgent extends Agent {
                                 (int) simulationGraph.getEdgeWeight(simulationGraph.getEdge(curr.getEnemyCurrentVertex(), v)) - 1, null);
                         sonToFather.put(newstate, curr);
 //                        System.out.println(" enemy at: " + curr.getEnemyCurrentVertex().getId() + " to: " + v.getId());
-                        ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, alpha, beta, !isMaxPlayer, time++);
+                        ZeroSumState toAdd = AlphaBetaRec(newstate,  newgraph, enemySimulationGraph, alpha, beta, !isMaxPlayer, time+1);
 //                        System.out.println("enemy: " + toAdd.getScore() + " at: " + curr.getEnemyCurrentVertex().getId() + " to: " + toAdd.getEnemyCurrentVertex().getId());
                         if (Math.max(value, toAdd.getScore()) != value) {
                             chosen = toAdd;

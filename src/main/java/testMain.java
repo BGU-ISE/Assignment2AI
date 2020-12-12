@@ -1,9 +1,13 @@
+import agents.NoncooperativeAgent;
+import agents.ZeroSumAgent;
 import agents.ZeroSumCooperativeAgent;
 import datatypes.Edge;
 import datatypes.Vertex;
 import environment.EnvironmentState;
+import heuristics.SemicooperativeHeuristic;
 import heuristics.ZSHeuristics;
 import heuristics.ZeroSumCooperativeHeuristic;
+import heuristics.ZeroSumNonCooperativeHeuristic;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.WeightedMultigraph;
 import simulator.Simulator;
@@ -15,7 +19,7 @@ public class testMain {
     public static void main(String[] args){
         Graph<Vertex, Edge> g=new WeightedMultigraph<>(Edge.class);
         Vertex v1=new Vertex(1,0);
-        Vertex v2=new Vertex(2,6);
+        Vertex v2=new Vertex(2,10);
         Vertex v3=new Vertex(3,0);
         Vertex v4=new Vertex(4,0);
         Vertex v5=new Vertex(5,3);
@@ -53,7 +57,7 @@ public class testMain {
         Edge e13=new Edge(13);
         Edge e14=new Edge(14);
         g.addEdge(v1,v2,e1);
-        g.setEdgeWeight(e1,12);
+        g.setEdgeWeight(e1,8);
 
         g.addEdge(v1,v6,e2);
         g.setEdgeWeight(e2,20);
@@ -62,7 +66,7 @@ public class testMain {
         g.setEdgeWeight(e3,5);
 
         g.addEdge(v2,v7,e4);
-        g.setEdgeWeight(e4,1);
+        g.setEdgeWeight(e4,7);
 
         g.addEdge(v3,v4,e5);
         g.setEdgeWeight(e5,6);
@@ -97,7 +101,7 @@ public class testMain {
 //        GreedyAgent agent=new GreedyAgent();
 //        GraphMovementAction action=agent.processNextAction(new Perception(v1,g));
         EnvironmentState.getInstance().setGraph(g);
-        EnvironmentState.getInstance().setWorldTimeout(20);
+        EnvironmentState.getInstance().setWorldTimeout(8);
 //        WorldLoader loader = new WorldLoader("/Users/igorvinokur/Development/Dev/Study/Assignment1AI/src/main/resources/graph-test.json");
 //        EnvironmentState.getInstance().setGraph(loader.loadWorld());
 //        EnvironmentState.getInstance().setWorldTimeout(loader.getWorldTimout().intValue());
@@ -110,18 +114,20 @@ public class testMain {
 //            }
 //        }
 //        ZSHeuristics heuristics = new ZeroSumNonCooperativeHeuristic();
-        ZSHeuristics heuristics = new ZeroSumCooperativeHeuristic();
+
         HashMap<Integer, Integer> peopleAtVertex = new HashMap<>();
         for (Vertex v : EnvironmentState.getInstance().getGraph().vertexSet()) {
             if (v.getNumberOfPeople() > 0) {
                 peopleAtVertex.put(v.getId(), v.getNumberOfPeople());
             }
         }
+//        SemicooperativeHeuristic heuristics =new SemicooperativeHeuristic();
+        ZSHeuristics heuristics=new ZeroSumCooperativeHeuristic();
         EnvironmentState.getInstance().setPeopleAtVertex(peopleAtVertex);
-//        ZeroSumAgent zeroSumAgent1 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
-//        ZeroSumAgent zeroSumAgent2 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
         ZeroSumCooperativeAgent zeroSumAgent1 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
         ZeroSumCooperativeAgent zeroSumAgent2 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
+//        NoncooperativeAgent zeroSumAgent1 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
+//        NoncooperativeAgent zeroSumAgent2 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
         zeroSumAgent1.setEnemy(zeroSumAgent2);
         zeroSumAgent2.setEnemy(zeroSumAgent1);
         EnvironmentState.getInstance().setAgentInit(zeroSumAgent1, v7);

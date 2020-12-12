@@ -15,7 +15,7 @@ public class ZeroSumState {
     protected int enemySaved;
     protected int howMuchTimeDidIGo;
     protected int enemyTimeToReach;
-
+    protected int[] scoreSemiCooperative=new int[2];
 
 
     protected Integer score;
@@ -30,6 +30,13 @@ public class ZeroSumState {
         this.score=s;
     }
 
+    public int[] getScoreSemiCooperative() {
+        return scoreSemiCooperative;
+    }
+
+    public void setScoreSemiCooperative(int[] scoreSemiCooperative) {
+        this.scoreSemiCooperative = scoreSemiCooperative;
+    }
 
     public Vertex getCurrentVertex() {
         return currentVertex;
