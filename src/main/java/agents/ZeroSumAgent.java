@@ -49,7 +49,7 @@ public class ZeroSumAgent extends Agent {
                             curr.getiSaved(), curr.getEnemySaved(), curr.getMyTimeToReach() - 1, curr.getEnemyTimeToReach(), null);
                 }
                 sonToFather.put(newstate, curr);
-                return AlphaBetaRec(newstate, enemySimulationGraph, simulationGraph, heuristic.evaluate(curr), beta, !isMaxPlayer);
+                return AlphaBetaRec(newstate, enemySimulationGraph, simulationGraph, alpha, beta, !isMaxPlayer);
             } else {
                 HashMap<Integer, Integer> newvertexToPeople = (HashMap<Integer, Integer>) curr.getVertexToPeople().entrySet()
                         .stream()
@@ -82,9 +82,9 @@ public class ZeroSumAgent extends Agent {
                                 (int) simulationGraph.getEdgeWeight(simulationGraph.getEdge(curr.getCurrentVertex(), v)) - 1,
                                 curr.getEnemyTimeToReach(), null);
                         sonToFather.put(newstate, curr);
-                        int newAlpha = heuristic.evaluate(curr);
+
                         System.out.println(" player at: " + curr.getCurrentVertex().getId() + " to: " + v.getId());
-                        ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, newAlpha, beta, !isMaxPlayer);
+                        ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, alpha, beta, !isMaxPlayer);
                         System.out.println("player " + toAdd.getScore() + " at: " + curr.getCurrentVertex().getId() + " to: " + toAdd.getCurrentVertex().getId());
                         if (Math.max(value, toAdd.getScore()) != value) {
                             alpha = Math.max(toAdd.getScore(), alpha);
@@ -98,7 +98,7 @@ public class ZeroSumAgent extends Agent {
                     }
 
                 }
-//                System.out.println("chosen - player at: " + curr.getCurrentVertex().getId() + " choose: " + chosen.getCurrentVertex().getId() + " score: " + chosen.getScore());
+               System.out.println("chosen - player at: " + curr.getCurrentVertex().getId() + " choose: " + chosen.getCurrentVertex().getId() + " score: " + chosen.getScore());
 
                 return chosen;
 
@@ -119,7 +119,7 @@ public class ZeroSumAgent extends Agent {
                             curr.getiSaved(), curr.getEnemySaved(), curr.getMyTimeToReach(), curr.getEnemyTimeToReach() - 1, null);
                 }
                 sonToFather.put(newstate, curr);
-                return AlphaBetaRec(newstate, enemySimulationGraph, simulationGraph, alpha, heuristic.evaluate(curr), !isMaxPlayer);
+                return AlphaBetaRec(newstate, enemySimulationGraph, simulationGraph, alpha, beta, !isMaxPlayer);
             } else {
                 HashMap<Integer, Integer> newvertexToPeople = (HashMap<Integer, Integer>) curr.getVertexToPeople().entrySet()
                         .stream()
@@ -152,7 +152,7 @@ public class ZeroSumAgent extends Agent {
                                 (int) simulationGraph.getEdgeWeight(simulationGraph.getEdge(curr.getEnemyCurrentVertex(), v)) - 1, null);
                         sonToFather.put(newstate, curr);
                         System.out.println(" enemy at: " + curr.getEnemyCurrentVertex().getId() + " to: " + v.getId());
-                        ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, alpha, heuristic.evaluate(curr), !isMaxPlayer);
+                        ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, alpha, beta, !isMaxPlayer);
                         System.out.println("enemy: " + toAdd.getScore() + " at: " + curr.getEnemyCurrentVertex().getId() + " to: " + toAdd.getEnemyCurrentVertex().getId());
                         if (Math.min(value, toAdd.getScore()) != value) {
                             chosen = toAdd;
@@ -167,7 +167,7 @@ public class ZeroSumAgent extends Agent {
 
                 }
 
-//                System.out.println("chosen - enemy at: " + curr.getEnemyCurrentVertex().getId() + " choose: " + chosen.getEnemyCurrentVertex().getId() + " score: " + chosen.getScore());
+               System.out.println("chosen - enemy at: " + curr.getEnemyCurrentVertex().getId() + " choose: " + chosen.getEnemyCurrentVertex().getId() + " score: " + chosen.getScore());
                 return chosen;
             }
         }
