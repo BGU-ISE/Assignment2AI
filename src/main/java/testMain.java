@@ -2,6 +2,8 @@ import agents.ZeroSumAgent;
 import datatypes.Edge;
 import datatypes.Vertex;
 import environment.EnvironmentState;
+import heuristics.ZSHeuristics;
+import heuristics.ZeroSumCooperativeHeuristic;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.WeightedMultigraph;
 import simulator.Simulator;
@@ -95,6 +97,7 @@ public class testMain {
 //        GreedyAgent agent=new GreedyAgent();
 //        GraphMovementAction action=agent.processNextAction(new Perception(v1,g));
         EnvironmentState.getInstance().setGraph(g);
+        EnvironmentState.getInstance().setWorldTimeout(20);
 //        WorldLoader loader = new WorldLoader("/Users/igorvinokur/Development/Dev/Study/Assignment1AI/src/main/resources/graph-test.json");
 //        EnvironmentState.getInstance().setGraph(loader.loadWorld());
 //        EnvironmentState.getInstance().setWorldTimeout(loader.getWorldTimout().intValue());
@@ -106,7 +109,8 @@ public class testMain {
 //                v2 = v;
 //            }
 //        }
-
+//        ZSHeuristics heuristics = new ZeroSumNonCooperativeHeuristic();
+        ZSHeuristics heuristics = new ZeroSumCooperativeHeuristic();
         HashMap<Integer, Integer> peopleAtVertex = new HashMap<>();
         for (Vertex v : EnvironmentState.getInstance().getGraph().vertexSet()) {
             if (v.getNumberOfPeople() > 0) {
@@ -114,8 +118,8 @@ public class testMain {
             }
         }
         EnvironmentState.getInstance().setPeopleAtVertex(peopleAtVertex);
-        ZeroSumAgent zeroSumAgent1 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 1");
-        ZeroSumAgent zeroSumAgent2 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 2");
+        ZeroSumAgent zeroSumAgent1 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
+        ZeroSumAgent zeroSumAgent2 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
         zeroSumAgent1.setEnemy(zeroSumAgent2);
         zeroSumAgent2.setEnemy(zeroSumAgent1);
         EnvironmentState.getInstance().setAgentInit(zeroSumAgent1, v1);

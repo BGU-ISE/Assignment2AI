@@ -2,6 +2,7 @@ package agents;
 
 import datatypes.Vertex;
 import environment.EnvironmentState;
+import heuristics.ZeroSumNonCooperativeHeuristic;
 
 import java.util.Scanner;
 
@@ -69,7 +70,7 @@ public class AgentsFactory {
                 break;
             }
         }
-        ZeroSumAgent zeroSumAgent = new ZeroSumAgent(EnvironmentState.getInstance(), "" + id);
+        ZeroSumAgent zeroSumAgent = new ZeroSumAgent(EnvironmentState.getInstance(), "" + id, new ZeroSumNonCooperativeHeuristic());
         EnvironmentState.getInstance().setAgentInit(zeroSumAgent, init);
         return zeroSumAgent;
     }
