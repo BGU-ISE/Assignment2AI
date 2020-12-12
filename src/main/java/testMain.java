@@ -19,13 +19,13 @@ public class testMain {
     public static void main(String[] args){
         Graph<Vertex, Edge> g=new WeightedMultigraph<>(Edge.class);
         Vertex v1=new Vertex(1,0);
-        Vertex v2=new Vertex(2,10);
+        Vertex v2=new Vertex(2,4);
         Vertex v3=new Vertex(3,0);
         Vertex v4=new Vertex(4,0);
-        Vertex v5=new Vertex(5,3);
-        Vertex v6=new Vertex(6,10);
+        Vertex v5=new Vertex(5,5);
+        Vertex v6=new Vertex(6,4);
         Vertex v7=new Vertex(7,0);
-        Vertex v8=new Vertex(8,4);
+        Vertex v8=new Vertex(8,7);
         Vertex v9=new Vertex(9,0);
         Vertex v10=new Vertex(10,0);
         Vertex v11=new Vertex(11,2);
@@ -66,25 +66,23 @@ public class testMain {
         g.setEdgeWeight(e3,5);
 
         g.addEdge(v2,v7,e4);
-        g.setEdgeWeight(e4,7);
+        g.setEdgeWeight(e4,8);
 
         g.addEdge(v3,v4,e5);
         g.setEdgeWeight(e5,6);
 
-        g.addEdge(v4,v5,e6);
-        g.setEdgeWeight(e6,4);
+        g.addEdge(v6,v5,e6);
+        g.setEdgeWeight(e6,8);
 
         g.addEdge(v4,v11,e7);
-        g.setEdgeWeight(e7,3);
+        g.setEdgeWeight(e7,9);
 
-        g.addEdge(v5,v12,e8);
-        g.setEdgeWeight(e8,5);
 
         g.addEdge(v6,v7,e9);
         g.setEdgeWeight(e9,8);
 
         g.addEdge(v7,v8,e10);
-        g.setEdgeWeight(e10,3);
+        g.setEdgeWeight(e10,16);
 
         g.addEdge(v7,v10,e11);
         g.setEdgeWeight(e11,11);
@@ -101,7 +99,7 @@ public class testMain {
 //        GreedyAgent agent=new GreedyAgent();
 //        GraphMovementAction action=agent.processNextAction(new Perception(v1,g));
         EnvironmentState.getInstance().setGraph(g);
-        EnvironmentState.getInstance().setWorldTimeout(8);
+        EnvironmentState.getInstance().setWorldTimeout(24);
 //        WorldLoader loader = new WorldLoader("/Users/igorvinokur/Development/Dev/Study/Assignment1AI/src/main/resources/graph-test.json");
 //        EnvironmentState.getInstance().setGraph(loader.loadWorld());
 //        EnvironmentState.getInstance().setWorldTimeout(loader.getWorldTimout().intValue());
@@ -122,10 +120,10 @@ public class testMain {
             }
         }
 //        SemicooperativeHeuristic heuristics =new SemicooperativeHeuristic();
-        ZSHeuristics heuristics=new ZeroSumCooperativeHeuristic();
+        ZSHeuristics heuristics=new ZeroSumNonCooperativeHeuristic();
         EnvironmentState.getInstance().setPeopleAtVertex(peopleAtVertex);
-        ZeroSumCooperativeAgent zeroSumAgent1 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
-        ZeroSumCooperativeAgent zeroSumAgent2 = new ZeroSumCooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
+        ZeroSumAgent zeroSumAgent1 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
+        ZeroSumAgent zeroSumAgent2 = new ZeroSumAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
 //        NoncooperativeAgent zeroSumAgent1 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 1", heuristics);
 //        NoncooperativeAgent zeroSumAgent2 = new NoncooperativeAgent(EnvironmentState.getInstance(), "Player 2", heuristics);
         zeroSumAgent1.setEnemy(zeroSumAgent2);

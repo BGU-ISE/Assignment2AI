@@ -94,8 +94,8 @@ public class ZeroSumAgent extends Agent {
 //                        System.out.println(" player at: " + curr.getCurrentVertex().getId() + " to: " + v.getId());
                         ZeroSumState toAdd = AlphaBetaRec(newstate, enemySimulationGraph, newgraph, alpha, beta, !isMaxPlayer, time);
 //                        System.out.println("player " + toAdd.getScore() + " at: " + curr.getCurrentVertex().getId() + " to: " + toAdd.getCurrentVertex().getId());
-                        if (curr.getCurrentVertex().getId() == 7 && name.equals("Player 2"))
-                            System.out.println("player " + toAdd.getScore() + " at: " + curr.getCurrentVertex().getId() + " to: " + toAdd.getCurrentVertex().getId() + " " +
+                        if (curr.getCurrentVertex().getId() == 7 && v.getId()==2 && name.equals("Player 1"))
+                            System.out.println("player " + toAdd.getScore() + " at: " + curr.getCurrentVertex().getId() + " to: " + v.getId() + " " +
                                     "my saved: " + toAdd.getiSaved() + " enemy saved " + toAdd.getEnemySaved());
 
                         if (Math.max(value, toAdd.getScore()) != value) {
