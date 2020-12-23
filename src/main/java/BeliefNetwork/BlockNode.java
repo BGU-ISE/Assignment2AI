@@ -14,6 +14,7 @@ public class BlockNode extends BeliefNode{
         probabilityTable[1][1]=1-(1-0.6/weight)*(1-0.6/weight);
         computeProbability();
     }
+
     public BlockNode(BeliefNode parent,double persistenceConstant){
         parents.add(parent);
         messages.put(parent,parent.probability());
@@ -24,9 +25,6 @@ public class BlockNode extends BeliefNode{
         probabilityTable[1][1]=0.0;
         computeProbability();
     }
-
-
-
 
     public void computeProbability(){
         if(parents.size()==2){

@@ -1,11 +1,17 @@
-import environment.Environment;
+import parser.GraphParser;
+
+import java.io.IOException;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Environment e = new Environment();
-        e.start();
+        GraphParser parser = new GraphParser("/Users/igorvinokur/Development/Dev/Study/Assignment3AI/src/main/resources/input.txt");
+        try {
+            parser.parse();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
