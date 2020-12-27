@@ -1,12 +1,13 @@
 package parser;
 
-import BeliefNetwork.NodeState;
+import BeliefNetwork.*;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GraphParser {
@@ -30,14 +31,14 @@ public class GraphParser {
         String line;
         while ((line = br.readLine()) != null) {
             if (line.length() > 0) {
-                System.out.println(line);
+//                System.out.println(line);
                 detectResource(line);
             }
         }
-        System.out.println(numberOfVertexes);
-        System.out.println(persistenceProd);
-        System.out.println(vertexes);
-        System.out.println(edges);
+//        System.out.println(numberOfVertexes);
+//        System.out.println(persistenceProd);
+//        System.out.println(vertexes);
+//        System.out.println(edges);
     }
 
     private void detectResource(String line) {
@@ -66,6 +67,23 @@ public class GraphParser {
             String []parts = line.split("[ ]+");
             persistenceProd = Double.parseDouble(parts[1]);
         }
+    }
+
+    public Network getNetwork() {
+        HashMap<Integer, EvacuteesNode> evacuteesNodes = new HashMap<>();
+        for (DummyVertex dv : vertexes) {
+            EvacuteesNode n = new EvacuteesNode(dv.id, dv.probability);
+            evacuteesNodes.put(dv.id, n);
+        }
+
+        List<BeliefNode> nodes = new ArrayList<>();
+        nodes.addAll(evacuteesNodes.values());
+        for (DummyEdge de : edges) {
+            BlockNode bn = new BlockNode(de.id, evacuteesNodes.get(de.fromId), evacuteesNodes.get(de.toId), de.weight, 0);
+            nodes.add(bn);
+        }
+        Network n = new Network(nodes);
+        return n;
     }
 
     class DummyEdge {

@@ -2,20 +2,25 @@ package BeliefNetwork;
 
 public class BlockNode extends BeliefNode{
 
+    private Integer time;
 
-    public BlockNode(BeliefNode parent1, BeliefNode parent2,double weight){
+    public BlockNode(Integer id, BeliefNode parent1, BeliefNode parent2, double weight, Integer time){
+        super(id);
+        this.time = time;
         parents.add(parent1);
         parents.add(parent2);
         messages.put(parent1,parent1.probability());
         messages.put(parent2,parent2.probability());
         probabilityTable[0][0]=0.001;
-        probabilityTable[1][0]=(0.6/weight);
+        probabilityTable[1][0] = (0.6 / weight);
         probabilityTable[0][1]=(0.6/weight);
         probabilityTable[1][1]=1-(1-0.6/weight)*(1-0.6/weight);
         computeProbability();
     }
 
-    public BlockNode(BeliefNode parent,double persistenceConstant){
+    public BlockNode(Integer id, BeliefNode parent,double persistenceConstant, Integer time){
+        super(id);
+        this.time = time;
         parents.add(parent);
         messages.put(parent,parent.probability());
 
@@ -48,5 +53,14 @@ public class BlockNode extends BeliefNode{
             double normalizationFactor=1/(positiveProbability+negativeProbability);
             originalProbability=normalizationFactor*positiveProbability;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "EDGE " + id + ", time " + time + ":\n" +
+                "\tP(Blocakge " + id + " | not Evacuees " + parents.get(0) .id + ", not Evacuees " + parents.get(1) .id + ") = " + probabilityTable[0][0] + "\n" +
+                "\tP(Blocakge " + id + " | Evacuees " + parents.get(0) .id + ", not Evacuees " + parents.get(1) .id + ") = " + probabilityTable[1][0] + "\n" +
+                "\tP(Blocakge " + id + " | not Evacuees " + parents.get(0) .id + ", Evacuees " + parents.get(1) .id + ") = " + probabilityTable[0][1] + "\n" +
+                "\tP(Blocakge " + id + " | Evacuees " + parents.get(0) .id + ", Evacuees " + parents.get(1) .id + ") = " + probabilityTable[1][1] + "\n\n";
     }
 }

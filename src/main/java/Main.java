@@ -9,6 +9,7 @@ public class Main {
         GraphParser parser = new GraphParser("/Users/igorvinokur/Development/Dev/Study/Assignment3AI/src/main/resources/input.txt");
         try {
             parser.parse();
+            parser.getNetwork().ask(null);
         } catch (IOException e) {
             e.printStackTrace();
         }
