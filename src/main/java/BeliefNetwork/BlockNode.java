@@ -1,6 +1,6 @@
 package BeliefNetwork;
 
-public class BlockNode extends BeliefNode{
+public class BlockNode extends BeliefNode {
 
     private Integer time;
 
@@ -57,10 +57,19 @@ public class BlockNode extends BeliefNode{
 
     @Override
     public String toString() {
+        if (parents.size() == 1) {
+            return "EDGE " + id + ", time " + time + ":\n" +
+                    "\tP(Blocakge " + id + " | not Evacuees " + parents.get(0) .id + ") = " + probabilityTable[0][0] + "\n" +
+                    "\tP(Blocakge " + id + " | Evacuees " + parents.get(0) .id + ") = " + probabilityTable[1][0] + "\n\n";
+        }
         return "EDGE " + id + ", time " + time + ":\n" +
                 "\tP(Blocakge " + id + " | not Evacuees " + parents.get(0) .id + ", not Evacuees " + parents.get(1) .id + ") = " + probabilityTable[0][0] + "\n" +
                 "\tP(Blocakge " + id + " | Evacuees " + parents.get(0) .id + ", not Evacuees " + parents.get(1) .id + ") = " + probabilityTable[1][0] + "\n" +
                 "\tP(Blocakge " + id + " | not Evacuees " + parents.get(0) .id + ", Evacuees " + parents.get(1) .id + ") = " + probabilityTable[0][1] + "\n" +
                 "\tP(Blocakge " + id + " | Evacuees " + parents.get(0) .id + ", Evacuees " + parents.get(1) .id + ") = " + probabilityTable[1][1] + "\n\n";
+    }
+
+    public Integer getTime() {
+        return time;
     }
 }

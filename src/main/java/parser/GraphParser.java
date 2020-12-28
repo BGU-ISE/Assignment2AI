@@ -78,10 +78,14 @@ public class GraphParser {
 
         List<BeliefNode> nodes = new ArrayList<>();
         nodes.addAll(evacuteesNodes.values());
+        List<BlockNode> timeNodes = new ArrayList<>();
         for (DummyEdge de : edges) {
             BlockNode bn = new BlockNode(de.id, evacuteesNodes.get(de.fromId), evacuteesNodes.get(de.toId), de.weight, 0);
             nodes.add(bn);
+            BlockNode tbn = new BlockNode(de.id + edges.size(), bn, persistenceProd, 1);
+            timeNodes.add(tbn);
         }
+        nodes.addAll(timeNodes);
         Network n = new Network(nodes);
         return n;
     }

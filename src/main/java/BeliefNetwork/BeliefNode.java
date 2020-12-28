@@ -69,7 +69,7 @@ public abstract class BeliefNode {
     @Override
     public String toString() {
         return "VERTEX " + id + ":\n" +
-                "\t P(Evacuees " + id + ") = " + originalProbability + "\n" +
-                "\t P(not Evacuees " + id +") = " + (1 - originalProbability) + "\n\n";
+                "\t P(Evacuees " + id + ") = " + probability() + "\n" +
+                "\t P(not Evacuees " + id +") = " + (1 - probability()) + "\n\n";
     }
 }
