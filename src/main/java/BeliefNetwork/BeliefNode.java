@@ -9,7 +9,6 @@ public abstract class BeliefNode {
     protected List<BeliefNode> children;
     protected List<BeliefNode> parents;
     protected HashMap<BeliefNode,Double> messages;
-    protected NodeState state; //unknown\true\false
     protected double originalProbability;
     protected double[][] probabilityTable=new double[2][2];
     protected double value;
@@ -93,6 +92,7 @@ public abstract class BeliefNode {
     public void clear(){
         value=-1;
         isConstant=false;
+        numberUpdated=0;
         for (BeliefNode parent:
              parents) {
             messages.put(parent, -1.0);
