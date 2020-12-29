@@ -3,13 +3,19 @@ import BeliefNetwork.data.Query;
 import parser.GraphParser;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        GraphParser parser = new GraphParser("C:\\Users\\itain\\Ideaprojects\\Assignment3AI\\src\\main\\resources\\input.txt");
+//        if (args.length == 0) {
+//            System.out.println("Graph file not provided");
+//            System.exit(0);
+//        }
+        //"C:\\Users\\itain\\Ideaprojects\\Assignment3AI\\src\\main\\resources\\input.txt");
+        GraphParser parser = new GraphParser("/Users/igorvinokur/Development/Dev/Study/Assignment3AI/src/main/resources/input1.txt");
         try {
             parser.parse();
         } catch (IOException e) {
@@ -99,14 +105,20 @@ public class Main {
         System.out.println();
     }
 
+    public Main() {
+    }
+
     public static void pathProbability(Network network) {
         Scanner command = new Scanner(System.in);
         System.out.println("============================");
-        System.out.println("Please enter from id: ");
-        Integer from = command.nextInt();
-        System.out.println("Please enter to id: ");
-        Integer to = command.nextInt();
-        Query query = new Query(Query.Operation.PathProb, from, to);
+        System.out.println("Please enter set of edges (press Enter after each id and 0 for stop): ");
+        Set<Integer> edges = new HashSet<>();
+        Integer v = 0;
+        while ((v = command.nextInt()) > 0) {
+            edges.add(v);
+        }
+        System.out.println(edges);
+        Query query = new Query(Query.Operation.PathProb, edges);
         network.ask(query);
         System.out.println();
     }

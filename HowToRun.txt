@@ -1,0 +1,10 @@
+1. You need to install Java 11.
+2. You need to install Maven
+3. After all installation was done, please run: build.sh
+4. After build complete run:
+
+java -jar ./target/hw3-1.0-SNAPSHOT.jar <path to graph file> < commands.txt
+
+ex.
+
+java -jar ./target/hw3-1.0-SNAPSHOT.jar input.txt

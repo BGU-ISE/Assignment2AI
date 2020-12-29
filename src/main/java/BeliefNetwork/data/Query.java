@@ -1,22 +1,22 @@
 package BeliefNetwork.data;
 
+import java.util.Set;
+
 public class Query {
     private Operation operation;
     private Integer itemId;
     private Double value;
 
-    private Integer fromId;
-    private Integer toId;
+    private Set<Integer> edges;
 
     public Query(Operation operation, Integer  itemId) {
         this.operation = operation;
         this.itemId = itemId;
     }
 
-    public Query(Operation operation, Integer  fromId, Integer toId) {
+    public Query(Operation operation, Set<Integer> edges) {
         this.operation = operation;
-        this.fromId = fromId;
-        this.toId = toId;
+        this.edges = edges;
     }
 
     public Query(Operation operation, Integer  itemId, Double value) {
@@ -41,12 +41,8 @@ public class Query {
         return value;
     }
 
-    public Integer getFromId() {
-        return fromId;
-    }
-
-    public Integer getToId() {
-        return toId;
+    public Set<Integer> getEdges() {
+        return edges;
     }
 
     @Override

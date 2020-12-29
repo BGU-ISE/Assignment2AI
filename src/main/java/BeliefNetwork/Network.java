@@ -56,11 +56,49 @@ public class Network {
                 }
                 break;
             }
-            case PathProb:
-                System.out.println();
-                System.out.println("TBD");
-                System.out.println();
+            case PathProb:{
+                List<BeliefNode> evacuteesNodes = new ArrayList<>();
+                for (int i=0; i<nodes.size(); i++) {
+                    if (nodes.get(i) instanceof EvacuteesNode) {
+                        evacuteesNodes.add(nodes.get(i));
+                    }
+                }
+                List<BeliefNode> evid = new ArrayList<>();
+                List<Double> evidV = new ArrayList<>();
+                for (String k : evidences.keySet()) {
+                    for (BeliefNode n : nodes) {
+                        if (k.charAt(0) == 'E') {
+                            if (n instanceof BlockNode && n.getId() == Integer.parseInt("" + k.charAt(1))) {
+                                evid.add(n);
+                                evidV.add(evidences.get(k));
+                                break;
+                            }
+                        }
+                        else if (k.charAt(0) == 'V') {
+                            if (n instanceof EvacuteesNode && n.getId() == Integer.parseInt("" + k.charAt(1))) {
+                                evid.add(n);
+                                evidV.add(evidences.get(k));
+                                break;
+                            }
+                        }
+                    }
+                }
+                Double totalProbability = 1.0;
+                for (Integer e : query.getEdges()) {
+                    for (BeliefNode n : nodes) {
+                        if (n.getId().equals(e) && n instanceof BlockNode) {
+                            //System.out.println(n);
+                            double prob = 1 - importanceSampling(evacuteesNodes, evid, evidV, n);
+                            evid.add(n);
+                            evidV.add(prob);
+                            totalProbability *= prob;
+                            break;
+                        }
+                    }
+                }
+                System.out.println("Path probability is: " + totalProbability);
                 break;
+            }
             case VertexProb: {
                     List<BeliefNode> evacuteesNodes = new ArrayList<>();
                     for (int i=0; i<nodes.size(); i++) {
@@ -146,7 +184,7 @@ public class Network {
             for (BeliefNode e:
                 evidence ) {
                 weight=weight*e.probability();
-                
+
             }
             if(toCheck.value()==1.0){
                 weightSumTrue+=weight;
