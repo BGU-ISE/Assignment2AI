@@ -65,6 +65,35 @@ public class Network {
         }
     }
 
+
+
+    public double importanceSampling(List<BeliefNode> ancestors, List<BeliefNode> evidence, List<Double> evidenceValues, BeliefNode toCheck ){
+        double weightsSumFalse=0;
+        double weightSumTrue=0;
+        for(int i=0;i < 1000; ++i){
+            updateEvidence(evidence, evidenceValues);
+            for (BeliefNode ancestor:
+                 ancestors) {
+                ancestor.startMonteCarlo();
+            }
+            double weight=1;
+            for (BeliefNode e:
+                evidence ) {
+                weight=weight*e.probability();
+                
+            }
+            if(toCheck.value==1.0){
+                weightSumTrue+=weight;
+            }
+            else{
+                weightsSumFalse+=weight;
+            }
+
+        }
+
+        return weightSumTrue/(weightsSumFalse+weightSumTrue)
+    }
+
     @Override
     public String toString() {
         return nodes.toString();

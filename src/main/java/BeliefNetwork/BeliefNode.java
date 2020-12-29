@@ -3,7 +3,7 @@ package BeliefNetwork;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Random;
 public abstract class BeliefNode {
     protected Integer id;
     protected List<BeliefNode> children;
@@ -12,8 +12,9 @@ public abstract class BeliefNode {
     protected NodeState state; //unknown\true\false
     protected double originalProbability;
     protected double[][] probabilityTable=new double[2][2];
-    protected double currentProbability;
-
+    protected double value;
+    protected boolean isConstant=false;
+    protected int numberUpdated=0;
     protected BeliefNode(Integer id) {
         this.id = id;
         parents = new ArrayList<>();
@@ -21,41 +22,76 @@ public abstract class BeliefNode {
         messages = new HashMap<>();
     }
 
-    public static void parentChild(BeliefNode parent,BeliefNode child){
-        parent.children.add(child);
-        child.messages.put(parent,parent.probability());
-
-    }
-    public void recieveMessage(BeliefNode parent, double message){
-        if(parents.contains(parent)){
-            messages.put(parent,message);
-            computeProbability();
-            updateAllChildren();
+    public void startMonteCarlo(){
+        computeProbability();
+        Random rand=new Random();
+        value=0;
+        if(rand.nextDouble()<originalProbability){
+            value=1;
         }
-
+        for (BeliefNode child:
+        children) {
+            child.propagateMonteCarlo(value, this);
+        }
     }
+
+    public void propagateMonteCarlo(double value, BeliefNode parent  ){
+        if(!isConstant) {
+            if (parents.contains(parent)) {
+                messages.put(parent, value);
+                numberUpdated = numberUpdated + 1;
+                if (numberUpdated == parents.size()) {
+                    computeProbability();
+                    Random rand=new Random();
+                    value=0;
+                    if(rand.nextDouble()<originalProbability){
+                        value=1;
+                    }
+                    for (BeliefNode child :
+                            children) {
+                        child.propagateMonteCarlo(value, this);
+                    }
+                }
+            }
+        }
+        else{
+            for (BeliefNode child :
+                    children) {
+                child.propagateMonteCarlo(value, this);
+            }
+        }
+    }
+
 
     public void addEvidence(double evidence){
-        currentProbability=evidence;
-        updateAllChildren();
+        value=evidence;
+        isConstant=true;
     }
 
     public abstract void computeProbability();
 
-    protected void updateAllChildren(){
-        for (BeliefNode child:
-                children) {
-            child.recieveMessage(this, this.probability());
-        }
+
+
+    public  double value(){
+        return value;
     }
 
-    public  double probability(){
-        return currentProbability;
+    public double probability(){
+        return originalProbability;
     }
 
     public void clear(){
-        currentProbability=originalProbability;
-        updateAllChildren();
+        value=-1;
+        isConstant=false;
+        for (BeliefNode parent:
+             parents) {
+            messages.put(parent, -1.0);
+        }
+        for(BeliefNode child: children){
+            child.clear();
+        }
+
+
     }
 
     public Integer getId() {

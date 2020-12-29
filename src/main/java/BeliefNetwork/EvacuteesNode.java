@@ -16,6 +16,8 @@ public class EvacuteesNode extends BeliefNode {
     @Override
     public void computeProbability() {
 
+
     }
+
 
 }
