@@ -91,7 +91,7 @@ public class Network {
 
         }
 
-        return weightSumTrue/(weightsSumFalse+weightSumTrue)
+        return weightSumTrue/(weightsSumFalse+weightSumTrue);
     }
 
     @Override
