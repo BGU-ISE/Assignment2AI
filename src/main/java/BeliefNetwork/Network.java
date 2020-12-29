@@ -65,7 +65,11 @@ public class Network {
         }
     }
 
-
+    public void updateEvidence(List<BeliefNode> l1, List<Double> l2){
+        for(int i=0;i<l1.size(); ++i){
+            l1.get(i).addEvidence(l2.get(i));
+        }
+    }
 
     public double importanceSampling(List<BeliefNode> ancestors, List<BeliefNode> evidence, List<Double> evidenceValues, BeliefNode toCheck ){
         double weightsSumFalse=0;
@@ -87,6 +91,10 @@ public class Network {
             }
             else{
                 weightsSumFalse+=weight;
+            }
+            for (BeliefNode ancestor:
+                    ancestors) {
+                ancestor.clear();
             }
 
         }
