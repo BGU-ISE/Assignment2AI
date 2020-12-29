@@ -3,10 +3,12 @@ package BeliefNetwork;
 import BeliefNetwork.data.Query;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Network {
     private List<BeliefNode> nodes;
+    private HashMap<String, Double> evidences = new HashMap<>();
 
     public Network() {
         nodes = new ArrayList<>();
@@ -18,36 +20,95 @@ public class Network {
 
     public void ask(Query query) {
         switch (query.getOperation()) {
-            case EdgeProb:
+            case EdgeProb: {
+                List<BeliefNode> evacuteesNodes = new ArrayList<>();
+                for (int i=0; i<nodes.size(); i++) {
+                    if (nodes.get(i) instanceof EvacuteesNode) {
+                        evacuteesNodes.add(nodes.get(i));
+                    }
+                }
+                List<BeliefNode> evid = new ArrayList<>();
+                List<Double> evidV = new ArrayList<>();
+                for (String k : evidences.keySet()) {
+                    for (BeliefNode n : nodes) {
+                        if (k.charAt(0) == 'E') {
+                            if (n instanceof BlockNode && n.getId() == Integer.parseInt("" + k.charAt(1))) {
+                                evid.add(n);
+                                evidV.add(evidences.get(k));
+                                break;
+                            }
+                        }
+                        else if (k.charAt(0) == 'V') {
+                            if (n instanceof EvacuteesNode && n.getId() == Integer.parseInt("" + k.charAt(1))) {
+                                evid.add(n);
+                                evidV.add(evidences.get(k));
+                                break;
+                            }
+                        }
+                    }
+                }
                 for (BeliefNode n : nodes) {
                     if (n.getId().equals( query.getItemId()) && n instanceof BlockNode) {
-                        System.out.println(n);
+                        double prob = importanceSampling(evacuteesNodes, evid, evidV, n);
+                        System.out.println("Edge " + n.getId() + " probability is: " + prob);
                         break;
                     }
                 }
                 break;
+            }
             case PathProb:
                 System.out.println();
                 System.out.println("TBD");
                 System.out.println();
                 break;
-            case VertexProb:
-                for (BeliefNode n : nodes) {
-                    if (n.getId().equals(query.getItemId()) && n instanceof EvacuteesNode) {
-                        System.out.println(n);
-                        break;
+            case VertexProb: {
+                    List<BeliefNode> evacuteesNodes = new ArrayList<>();
+                    for (int i=0; i<nodes.size(); i++) {
+                        if (nodes.get(i) instanceof EvacuteesNode) {
+                            evacuteesNodes.add(nodes.get(i));
+                        }
                     }
-                }
-                break;
+                    List<BeliefNode> evid = new ArrayList<>();
+                    List<Double> evidV = new ArrayList<>();
+                    for (String k : evidences.keySet()) {
+                        for (BeliefNode n : nodes) {
+                            if (k.charAt(0) == 'E') {
+                                if (n instanceof BlockNode && n.getId() == Integer.parseInt("" + k.charAt(1))) {
+                                    evid.add(n);
+                                    evidV.add(evidences.get(k));
+                                    break;
+                                }
+                            }
+                            else if (k.charAt(0) == 'V') {
+                                if (n instanceof EvacuteesNode && n.getId() == Integer.parseInt("" + k.charAt(1))) {
+                                    evid.add(n);
+                                    evidV.add(evidences.get(k));
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    for (BeliefNode n : nodes) {
+                        if (n.getId().equals(query.getItemId()) && n instanceof EvacuteesNode) {
+                            //System.out.println(n);
+                            double prob = importanceSampling(evacuteesNodes, evid, evidV, n);
+                            System.out.println("Vertex " + n.getId() + " probability is: " + prob);
+                            break;
+                        }
+                    }
+                    break;
+            }
             case ResetEvidence:
                 for (BeliefNode n : nodes) {
                     n.clear();
                 }
+                evidences.clear();
                 break;
             case AddEdgeEvidence:
                 for (int i = 0; i < nodes.size(); i++) {
                     if (nodes.get(i).getId().equals( query.getItemId()) && nodes.get(i) instanceof BlockNode) {
                         nodes.get(i).addEvidence(query.getValue());
+                        evidences.put("E" + nodes.get(i).getId(), query.getValue());
                         break;
                     }
                 }
@@ -56,6 +117,7 @@ public class Network {
                 for (int i = 0; i < nodes.size(); i++) {
                     if (nodes.get(i).getId().equals(query.getItemId()) && nodes.get(i) instanceof EvacuteesNode) {
                         nodes.get(i).addEvidence(query.getValue());
+                        evidences.put("V" + nodes.get(i).getId(), query.getValue());
                         break;
                     }
                 }
@@ -97,6 +159,10 @@ public class Network {
                 ancestor.clear();
             }
 
+        }
+
+        if (weightSumTrue == 0) {
+            return 0;
         }
 
         return weightSumTrue/(weightsSumFalse+weightSumTrue);

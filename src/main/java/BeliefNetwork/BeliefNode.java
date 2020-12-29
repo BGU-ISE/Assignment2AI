@@ -42,6 +42,10 @@ public abstract class BeliefNode {
         }
     }
 
+    public void addChild(BeliefNode child){
+        children.add(child);
+    }
+
     public void propagateMonteCarlo(double value, BeliefNode parent  ){
 
         if (parents.contains(parent)) {
@@ -115,7 +119,7 @@ public abstract class BeliefNode {
     @Override
     public String toString() {
         return "VERTEX " + id + ":\n" +
-                "\t P(Evacuees " + id + ") = " + probability() + "\n" +
-                "\t P(not Evacuees " + id +") = " + (1 - probability()) + "\n\n";
+                "\t P(Evacuees " + id + ") = " + value() + "\n" +
+                "\t P(not Evacuees " + id +") = " + (1 - value()) + "\n\n";
     }
 }

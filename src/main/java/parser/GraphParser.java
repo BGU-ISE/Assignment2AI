@@ -82,8 +82,11 @@ public class GraphParser {
         for (DummyEdge de : edges) {
             BlockNode bn = new BlockNode(de.id, evacuteesNodes.get(de.fromId), evacuteesNodes.get(de.toId), de.weight, 0);
             nodes.add(bn);
+            evacuteesNodes.get(de.fromId).addChild(bn);
+            evacuteesNodes.get(de.toId).addChild(bn);
             BlockNode tbn = new BlockNode(de.id + edges.size(), bn, persistenceProd, 1);
             timeNodes.add(tbn);
+            bn.addChild(tbn);
         }
         nodes.addAll(timeNodes);
         Network n = new Network(nodes);
