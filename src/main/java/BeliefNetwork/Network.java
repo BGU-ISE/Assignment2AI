@@ -86,7 +86,7 @@ public class Network {
                 weight=weight*e.probability();
                 
             }
-            if(toCheck.value==1.0){
+            if(toCheck.value()==1.0){
                 weightSumTrue+=weight;
             }
             else{

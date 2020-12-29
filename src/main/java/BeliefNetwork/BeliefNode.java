@@ -23,41 +23,51 @@ public abstract class BeliefNode {
     }
 
     public void startMonteCarlo(){
-        computeProbability();
-        Random rand=new Random();
-        value=0;
-        if(rand.nextDouble()<originalProbability){
-            value=1;
-        }
-        for (BeliefNode child:
-        children) {
-            child.propagateMonteCarlo(value, this);
-        }
-    }
-
-    public void propagateMonteCarlo(double value, BeliefNode parent  ){
         if(!isConstant) {
-            if (parents.contains(parent)) {
-                messages.put(parent, value);
-                numberUpdated = numberUpdated + 1;
-                if (numberUpdated == parents.size()) {
-                    computeProbability();
-                    Random rand=new Random();
-                    value=0;
-                    if(rand.nextDouble()<originalProbability){
-                        value=1;
-                    }
-                    for (BeliefNode child :
-                            children) {
-                        child.propagateMonteCarlo(value, this);
-                    }
-                }
+            computeProbability();
+            Random rand = new Random();
+            value = 0;
+            if (rand.nextDouble() < originalProbability) {
+                value = 1;
+            }
+            for (BeliefNode child :
+                    children) {
+                child.propagateMonteCarlo(value, this);
             }
         }
         else{
             for (BeliefNode child :
                     children) {
                 child.propagateMonteCarlo(value, this);
+            }
+        }
+    }
+
+    public void propagateMonteCarlo(double value, BeliefNode parent  ){
+
+        if (parents.contains(parent)) {
+            numberUpdated = numberUpdated + 1;
+            if (numberUpdated == parents.size()) {
+                if (!isConstant) {
+                    messages.put(parent, value);
+                    computeProbability();
+                    Random rand = new Random();
+                    value = 0;
+                    if (rand.nextDouble() < originalProbability) {
+                        value = 1;
+                    }
+                    for (BeliefNode child :
+                            children) {
+                        child.propagateMonteCarlo(value, this);
+                    }
+
+
+                } else {
+                    for (BeliefNode child :
+                            children) {
+                        child.propagateMonteCarlo(value, this);
+                    }
+                }
             }
         }
     }
