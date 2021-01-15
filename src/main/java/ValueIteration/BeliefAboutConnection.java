@@ -6,6 +6,7 @@ public class BeliefAboutConnection {
     Vertex v1;
     Vertex v2;
     StateOfConnection state;
+    double probability;
 
     public Vertex getV1() {
         return v1;
@@ -25,9 +26,10 @@ public class BeliefAboutConnection {
         this.state = state;
     }
 
-    public BeliefAboutConnection(Vertex v1, Vertex v2, StateOfConnection state) {
+    public BeliefAboutConnection(Vertex v1, Vertex v2, StateOfConnection state, double probability) {
         this.v1 = v1;
         this.v2 = v2;
         this.state = state;
+        this.probability=probability;
     }
 }
