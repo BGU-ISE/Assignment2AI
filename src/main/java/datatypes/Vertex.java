@@ -10,6 +10,10 @@ public class Vertex {
     public Vertex() {
     }
 
+    public Vertex(Integer id) {
+        this.id = id;
+    }
+
     public Vertex(Integer id, Integer numberOfPeople) {
         this.id = id;
         this.numberOfPeople = numberOfPeople;
@@ -43,8 +47,6 @@ public class Vertex {
     public String toString() {
         return "Vertex {\n" +
                 "\tid = " + id +
-                ", \n\tnumberOfPeople = " + numberOfPeople +
-                ", \n\tcomment = '" + comment + '\'' +
                 "\n}";
     }
 

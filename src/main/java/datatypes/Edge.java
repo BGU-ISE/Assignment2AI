@@ -9,6 +9,7 @@ public class Edge extends DefaultWeightedEdge {
     private String comment;
     private double originalWeight;
     private boolean blocked=false;
+    private double probability;
 
     public Edge(){ super(); }
 
@@ -61,13 +62,28 @@ public class Edge extends DefaultWeightedEdge {
         return (Vertex) super.getTarget();
     }
 
+    public double getProbability() {
+        return probability;
+    }
+
+    public void setProbability(double probability) {
+        this.probability = probability;
+    }
+
+    public double getOriginalWeight() {
+        return originalWeight;
+    }
+
+    public void setOriginalWeight(double originalWeight) {
+        this.originalWeight = originalWeight;
+    }
+
     @Override
     public String toString() {
         return "Edge {\n" +
                 "\tid = " + getId() + ",\n" +
                 "\tweight = " + getWeight() + ",\n" +
-                "\tblocked = " + blocked + ",\n" +
-                "\tcomment = '" + comment + ",\n" +
+                "\tprobability = "+ probability + ",\n" +
                 "\tvertex = " + super.toString() + "" +
                 "\n}";
     }
