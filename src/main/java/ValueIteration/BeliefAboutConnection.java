@@ -32,4 +32,14 @@ public class BeliefAboutConnection {
         this.state = state;
         this.probability=probability;
     }
+
+    @Override
+    public String toString() {
+        return "BeliefAboutConnection {\n" +
+                "\tv1 = " + v1.getId() +
+                ", \n\tv2 = " + v2.getId() +
+                ", \n\tstate = " + state +
+                ", \n\tprobability = " + probability +
+                "\n}";
+    }
 }

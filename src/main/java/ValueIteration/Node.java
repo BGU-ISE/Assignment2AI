@@ -4,6 +4,7 @@ import datatypes.Edge;
 import datatypes.Vertex;
 import org.jgrapht.Graph;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -149,4 +150,16 @@ public class Node {
 
     }
 
+
+    @Override
+    public String toString() {
+        return "Node {\n" +
+                "\tlocation = " + location.getId() +
+                ", \n\tbeliefs = " + Arrays.toString(beliefs) +
+                ", \n\tvalue = " + value +
+                ", \n\tnext = " + next +
+//                ", \n\tneighbors = " + neighbors +
+                ", \n\tunknownNode = " + unknownNode +
+                "\n}";
+    }
 }
