@@ -4,14 +4,13 @@ import datatypes.Edge;
 import datatypes.Vertex;
 import org.jgrapht.Graph;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Node {
     Vertex location;
     BeliefAboutConnection[] beliefs;
-    double value = 0;
+    double value = -Double.MAX_VALUE;
     Node next = null;
     List<Node> neighbors = new LinkedList<>();
     boolean unknownNode;
@@ -26,7 +25,7 @@ public class Node {
     public boolean update(Graph<Vertex, Edge> g) {
 
         if (!unknownNode) {
-            Node n = getMaxNeighborNode();
+            Node n = getMaxNeighborNode(g);
             double weight = g.getEdgeWeight(g.getEdge(n.location, location));
             if (value >= -weight + n.value) {
                 return false;
@@ -54,12 +53,12 @@ public class Node {
 
     }
 
-    public Node getMaxNeighborNode() {
+    public Node getMaxNeighborNode(Graph<Vertex, Edge> g) {
         double max = Double.NEGATIVE_INFINITY;
         Node ret = null;
         for (Node n :
                 neighbors) {
-            if (n.value > max) {
+            if (n.value - g.getEdgeWeight(g.getEdge(n.location, location)) > max) {
                 max = value;
                 ret = n;
             }
@@ -99,10 +98,14 @@ public class Node {
             double value1 = recUnknownNodeValue(carry, probability * (1 - currProb), iterator + 1);
             carry.remove(carry.size() - 1);
             carry.add(new BeliefAboutConnection(v1, v2, StateOfConnection.CLOSED, currProb));
-            return value1 + recUnknownNodeValue(carry, probability * (currProb), iterator + 1);
+            double value2 = value1 + recUnknownNodeValue(carry, probability * (currProb), iterator + 1);
+            carry.remove(carry.size() - 1);
+            return value2;
         } else {
             carry.add(beliefs[iterator]);
-            return recUnknownNodeValue(carry, probability, iterator + 1);
+            double value = recUnknownNodeValue(carry, probability, iterator + 1);
+            carry.remove(carry.size() - 1);
+            return value;
         }
     }
 
@@ -153,13 +156,43 @@ public class Node {
 
     @Override
     public String toString() {
+        String nbs = "";
+        for (Node n : neighbors) {
+            nbs +=  n.getLocation().getId() + ", ";
+        }
+        String blsf = "";
+        for (BeliefAboutConnection bca : beliefs) {
+            blsf += bca.v1.getId() + "->" + bca.v2.getId() + " " + bca.state + ", ";
+        }
+
+
         return "Node {\n" +
-                "\tlocation = " + location.getId() +
-                ", \n\tbeliefs = " + Arrays.toString(beliefs) +
-                ", \n\tvalue = " + value +
-                ", \n\tnext = " + next +
-//                ", \n\tneighbors = " + neighbors +
-                ", \n\tunknownNode = " + unknownNode +
+                "\tV = " + location.getId() +
+                ", \n\tbeliefs = " + blsf +
+                " \n\tvalue = " + value +
+                ", \n\tnext = " + (next != null ? next.location.getId() : "UNREACHABLE") +
+                ", \n\tneighbors = " + nbs +
                 "\n}";
+    }
+
+    public void print() {
+        String blsf = "";
+        for (BeliefAboutConnection bca : beliefs) {
+            blsf += bca.v1.getId() + " - " + bca.v2.getId() + " " + bca.state + ", ";
+        }
+        blsf = blsf.substring(0, blsf.length() - 2);
+        String nextMove;
+        if (next == null) {
+            nextMove = "NO ACTION OR UNREACHABLE";
+        }
+        else {
+            nextMove = "Move " + location.getId() + " -> " + next.location.getId();
+        }
+
+        System.out.println("[V" + location.getId() + " { " + blsf + " }]: value = " + value + ", " + nextMove);
+    }
+
+    public Node getNext() {
+        return next;
     }
 }

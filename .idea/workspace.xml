@@ -2,223 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6643dfc3-7441-44f7-b9bc-3517b46a9e42" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_googlecode_json_simple_json_simple_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr4_runtime_4_8_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_text_1_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jgrapht_jgrapht_core_1_5_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jgrapht_jgrapht_io_1_5_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jheaps_jheaps_0_13.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/VIMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/VIMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ValueIteration/BeliefAboutConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ValueIteration/BeliefAboutConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ValueIteration/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ValueIteration/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ValueIteration/ValueIterationAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ValueIteration/ValueIterationAlgorithm.java" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="392234658">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.3" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="java" value="13" />
-          <entry key="png" value="1" />
-          <entry key="txt" value="1" />
-          <entry key="xml" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Image" value="1" />
-          <entry key="JAVA" value="13" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="XML" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="java" value="869" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JAVA" value="869" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ValueIteration/ValueIterationAlgorithm.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ValueIteration/Node.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="158" column="42" lean-forward="true" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/VIMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ValueIteration/BeliefAboutConnection.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GradleLocalSettings">
-    <option name="modificationStamps">
-      <map>
-        <entry key="$USER_HOME$/Desktop/SpringMeetup" value="1465041586000" />
-        <entry key="$USER_HOME$/Desktop/Zooz" value="7218001668000" />
-        <entry key="$PROJECT_DIR$/../testdb" value="1480445756000" />
-        <entry key="$USER_HOME$/Dropbox/Development/Objective C Development/Git/AuthenticationAPI" value="1446835620000" />
-        <entry key="$USER_HOME$/Dropbox/Development/Objective C Development/Git/ImOkWS" value="1444324975000" />
-        <entry key="$USER_HOME$/Dropbox/Development/Objective C Development/Git/ImOk_WS" value="1444316506000" />
-        <entry key="$USER_HOME$/Dropbox/Work (my company)/ANG Tech/ANG_Tech_WS" value="1447313499000" />
-        <entry key="$USER_HOME$/Dropbox/Work (my company)/Zooz/WebService/Zooz_WS" value="1444047888000" />
-      </map>
-    </option>
-    <option name="projectSyncType">
-      <map>
-        <entry key="$USER_HOME$/Development/Dev/E2ESolutions/IoTrace_message_broker_server" value="PREVIEW" />
-        <entry key="$USER_HOME$/Development/Dev/InfiniDome/infini_dome_iot_server" value="PREVIEW" />
-        <entry key="$USER_HOME$/Development/Dev/origin-gps-server" value="PREVIEW" />
-        <entry key="$PROJECT_DIR$/../spring-websocket-chat-master" value="PREVIEW" />
-      </map>
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/VIMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ValueIteration/BeliefAboutConnection.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ValueIteration/ValueIterationAlgorithm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ValueIteration/Node.java" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="25" />
-    <option name="width" value="1680" />
-    <option name="height" value="984" />
-  </component>
+  <component name="ProjectId" id="1nLpf9HwSxyTDPeguCALtqLg3m8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="hw3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment3AI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hw3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment3AI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hw3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment3AI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hw3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment3AI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hw3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment3AI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="BeliefNetwork" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hw3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment3AI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ValueIteration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="hw3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment3AI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="$USER_HOME$/.nvm/versions/node/v8.5.0/bin/node" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -226,19 +41,13 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Application.VIMain">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -247,12 +56,6 @@
     </configuration>
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -263,10 +66,10 @@
       </method>
     </configuration>
     <configuration name="VIMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH" value="11.0.1" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="VIMain" />
-      <module name="hw3" />
+      <module name="Assignment3AI" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -278,6 +81,7 @@
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -294,158 +98,86 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1680" height="984" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18620269" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21205099" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39976826" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="12" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18620269" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.21205099" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Messages" order="12" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
-    </layout-to-restore>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ValueIteration/Node.java</url>
-          <line>28</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="113" selection-start-line="15" selection-start-column="113" selection-end-line="15" selection-end-column="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Canvas 2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BeliefNetwork/BeliefNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="54" column="27" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BeliefNetwork/BlockNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BeliefNetwork/EvacuteesNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BeliefNetwork/Network.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="182" column="16" selection-start-line="182" selection-start-column="16" selection-end-line="182" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/input.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.9.jdk/Contents/Home/lib/src.zip!/java.base/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="237" column="12" selection-start-line="237" selection-start-column="12" selection-end-line="237" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/VIMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ValueIteration/BeliefAboutConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ValueIteration/ValueIterationAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ValueIteration/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="158" column="42" lean-forward="true" selection-start-line="158" selection-start-column="42" selection-end-line="158" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="639" y="145" key="#VIMain" timestamp="1611214841336">
+      <screen x="0" y="25" width="1920" height="1009" />
+    </state>
+    <state x="639" y="145" key="#VIMain/0.25.1920.1009@0.25.1920.1009" timestamp="1611214841336" />
+    <state x="2693" y="234" key="#com.intellij.ide.util.MemberChooser" timestamp="1611253826198">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state x="2693" y="234" key="#com.intellij.ide.util.MemberChooser/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611253826198" />
+    <state x="664" y="386" width="968" height="648" key="#xdebugger.evaluate" timestamp="1611215001092">
+      <screen x="0" y="25" width="1920" height="1009" />
+    </state>
+    <state x="664" y="386" width="968" height="648" key="#xdebugger.evaluate/0.25.1920.1009@0.25.1920.1009" timestamp="1611215001092" />
+    <state width="930" height="466" key="DebuggerActiveHint" timestamp="1611249670217">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="930" height="466" key="DebuggerActiveHint/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611249670217" />
+    <state width="1878" height="272" key="GridCell.Tab.0.bottom" timestamp="1611254268528">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="939" height="327" key="GridCell.Tab.0.bottom/0.25.1920.1009@0.25.1920.1009" timestamp="1611215037086" />
+    <state width="939" height="265" key="GridCell.Tab.0.bottom/1920.25.1920.1055/0.25.1920.1009@0.25.1920.1009" timestamp="1611240647985" />
+    <state width="1878" height="272" key="GridCell.Tab.0.bottom/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611254268528" />
+    <state width="1878" height="272" key="GridCell.Tab.0.center" timestamp="1611254268527">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="939" height="327" key="GridCell.Tab.0.center/0.25.1920.1009@0.25.1920.1009" timestamp="1611215037086" />
+    <state width="939" height="265" key="GridCell.Tab.0.center/1920.25.1920.1055/0.25.1920.1009@0.25.1920.1009" timestamp="1611240647984" />
+    <state width="1878" height="272" key="GridCell.Tab.0.center/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611254268527" />
+    <state width="1878" height="272" key="GridCell.Tab.0.left" timestamp="1611254268527">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="939" height="327" key="GridCell.Tab.0.left/0.25.1920.1009@0.25.1920.1009" timestamp="1611215037086" />
+    <state width="939" height="265" key="GridCell.Tab.0.left/1920.25.1920.1055/0.25.1920.1009@0.25.1920.1009" timestamp="1611240647984" />
+    <state width="1878" height="272" key="GridCell.Tab.0.left/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611254268527" />
+    <state width="1878" height="272" key="GridCell.Tab.0.right" timestamp="1611254268528">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="939" height="327" key="GridCell.Tab.0.right/0.25.1920.1009@0.25.1920.1009" timestamp="1611215037086" />
+    <state width="939" height="265" key="GridCell.Tab.0.right/1920.25.1920.1055/0.25.1920.1009@0.25.1920.1009" timestamp="1611240647984" />
+    <state width="1878" height="272" key="GridCell.Tab.0.right/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611254268528" />
+    <state width="1878" height="454" key="GridCell.Tab.1.bottom" timestamp="1611250083384">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="939" height="327" key="GridCell.Tab.1.bottom/0.25.1920.1009@0.25.1920.1009" timestamp="1611215037087" />
+    <state width="1878" height="454" key="GridCell.Tab.1.bottom/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611250083384" />
+    <state width="1878" height="454" key="GridCell.Tab.1.center" timestamp="1611250083383">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="939" height="327" key="GridCell.Tab.1.center/0.25.1920.1009@0.25.1920.1009" timestamp="1611215037087" />
+    <state width="1878" height="454" key="GridCell.Tab.1.center/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611250083383" />
+    <state width="1878" height="454" key="GridCell.Tab.1.left" timestamp="1611250083383">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="939" height="327" key="GridCell.Tab.1.left/0.25.1920.1009@0.25.1920.1009" timestamp="1611215037087" />
+    <state width="1878" height="454" key="GridCell.Tab.1.left/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611250083383" />
+    <state width="1878" height="454" key="GridCell.Tab.1.right" timestamp="1611250083384">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="939" height="327" key="GridCell.Tab.1.right/0.25.1920.1009@0.25.1920.1009" timestamp="1611215037087" />
+    <state width="1878" height="454" key="GridCell.Tab.1.right/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611250083384" />
+    <state width="960" height="510" key="XDebugger.FullValuePopup" timestamp="1611214951614">
+      <screen x="0" y="25" width="1920" height="1009" />
+    </state>
+    <state width="960" height="510" key="XDebugger.FullValuePopup/0.25.1920.1009@0.25.1920.1009" timestamp="1611214951614" />
+    <state x="2419" y="262" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1611249697008">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state x="2419" y="262" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611249697008" />
+    <state width="635" height="206" key="javadoc.popup.new" timestamp="1611254001640">
+      <screen x="1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="635" height="197" key="javadoc.popup.new/0.25.1920.1009@0.25.1920.1009" timestamp="1611214958833" />
+    <state width="635" height="206" key="javadoc.popup.new/1920.25.1920.1055/0.25.1920.1009@1920.25.1920.1055" timestamp="1611254001640" />
   </component>
   <component name="masterDetails">
     <states>
